@@ -20,24 +20,16 @@ class Solver:
         self.solved_puzzle = self.solve(self.puzzle)
 
     def solve(self, puzzle, current_y=0, current_x=0):
-        print 'start'
         y, x = self._next_empty(puzzle, current_y, current_x)
         if x is None or y is None:
-            print 'Done!!!!!'
             return puzzle
-        else:
-            print y, x
         for write_val in range(1, self.max_value + 1):
-            print write_val
             if self._validate(puzzle, y, x, write_val):
                 puzzle[y][x] = write_val
-                pprint(puzzle)
-                if self.solve(puzzle, y, x) is None:
-                    continue
-                else:
+                if self.solve(puzzle, y, x) is not None:
                     return puzzle
-            else:
-                continue
+                puzzle[y][x] = 0
+        return None
 
 
 
@@ -79,7 +71,7 @@ class Solver:
 
         return True
 
-'''raw_puzzle = [
+raw_puzzle = [
     [0,7,8,5,6,0,1,0,0],
     [0,2,3,0,0,0,5,7,0],
     [0,0,0,0,0,2,6,0,0],
@@ -89,15 +81,15 @@ class Solver:
     [0,0,6,2,0,0,0,0,0],
     [0,4,7,0,0,0,3,8,0],
     [0,0,1,0,3,6,7,2,0]
-]'''
+]
 
-raw_puzzle = [
+'''raw_puzzle = [
     [0,1,0,0],
     [0,0,2,0],
     [0,2,0,0],
     [0,0,3,0]
-]
+]'''
 
 solve = Solver(puzzle=raw_puzzle)
-
+pprint (solve.solved_puzzle)
 #print Solver(puzzle=raw_puzzle)._validate(1, 0, 1, raw_puzzle)
