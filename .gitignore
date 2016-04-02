@@ -1,0 +1,6 @@
+*.pyc
+*.sqlite
+
+.idea
+.project
+.settings
