@@ -17,16 +17,17 @@ class Solver:
         self.box_height = self.box_width = int(sqrt(self.height))
         self.max_value = self.height if self.height > self.width else self.width
 
-        self.solved_puzzle = self.solve(self.puzzle)
+    def solve_puzzle(self):
+        return self._solve(self.puzzle)
 
-    def solve(self, puzzle, current_y=0, current_x=0):
+    def _solve(self, puzzle, current_y=0, current_x=0):
         y, x = self._next_empty(puzzle, current_y, current_x)
         if x is None or y is None:
             return puzzle
         for write_val in range(1, self.max_value + 1):
             if self._validate(puzzle, y, x, write_val):
                 puzzle[y][x] = write_val
-                if self.solve(puzzle, y, x) is not None:
+                if self._solve(puzzle, y, x) is not None:
                     return puzzle
                 puzzle[y][x] = 0
         return None
@@ -60,7 +61,6 @@ class Solver:
         for val in puzzle:
             if num == val[x]:
                 return False
-
         # check the box
         start_y = int(y / self.box_height) * self.box_height
         start_x = int(x / self.box_width) * self.box_width
@@ -90,6 +90,4 @@ raw_puzzle = [
     [0,0,3,0]
 ]'''
 
-solve = Solver(puzzle=raw_puzzle)
-pprint (solve.solved_puzzle)
-#print Solver(puzzle=raw_puzzle)._validate(1, 0, 1, raw_puzzle)
+pprint(Solver(puzzle=raw_puzzle).solve_puzzle())
