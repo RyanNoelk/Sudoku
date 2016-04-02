@@ -32,17 +32,16 @@ class Solver:
                 puzzle[y][x] = 0
         return None
 
-
-
     def _next_empty(self, puzzle, y_start, x_start):
         """ Returns the position of the next empty value, None if there aren't any
             Then sets moves the pointer to the next number
         """
-        y_start=x_start=0
         for y in range(y_start, self.height):
             for x in range(x_start, self.width):
                 if 0 == puzzle[y][x]:
                     return y, x
+            x_start = 0
+
         return None, None
 
     def _validate(self, puzzle, y, x, num):
