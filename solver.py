@@ -1,20 +1,43 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-# This program solves a sudoku pullze
-
 from math import sqrt
-from pprint import pprint
+
 
 class Solver:
+    """Given a raw, unsolved puzzle, this class with return a solved puzzle.
 
-    def __init__(self, **kwargs):
-        self.puzzle = kwargs.get('puzzle', None)
+        raw_puzzle = [
+            [0,7,8,5,6,0,1,0,0],
+            [0,2,3,0,0,0,5,7,0],
+            [0,0,0,0,0,2,6,0,0],
+            [7,0,0,0,9,1,0,5,3],
+            [0,8,0,0,4,0,0,6,0],
+            [4,3,0,6,2,0,0,0,1],
+            [0,0,6,2,0,0,0,0,0],
+            [0,4,7,0,0,0,3,8,0],
+            [0,0,1,0,3,6,7,2,0]
+        ]
+        pprint(Solver(raw_puzzle).solve_puzzle())
 
-        # We are assuming that we have a square puzzle
-        # TODO make this work for rectangles
+        raw_puzzle = [
+            [0,1,0,0],
+            [0,0,2,0],
+            [0,2,0,0],
+            [0,0,3,0]
+        ]
+        pprint(Solver(raw_puzzle).solve_puzzle())
+    """
+    def __init__(self, puzzle):
+        # The unsolved raw puzzle
+        self.puzzle = puzzle
+
+        # TODO: We are assuming that we have a square puzzle, make this work for rectangles
+        # The total box height and width
         self.height = self.width = len(self.puzzle)
+        # The inner box height and width
         self.box_height = self.box_width = int(sqrt(self.height))
+        # The maximum int value of the number that can be used in the puzzle
         self.max_value = self.height if self.height > self.width else self.width
 
         # Predefined ranges
@@ -47,10 +70,10 @@ class Solver:
     def _next_empty(self, puzzle, y_start, x_start):
         """ Returns the position of the next empty value, none if there aren't any.
             Then sets moves the pointer to the next number.
-            :param x_start: starting position of the x-axis
-            :param y_start: starting position of the y-axis
-            :param puzzle: the current puzzle
-            :return: the y, x coordinates of the next empty square
+             :param x_start: starting position of the x-axis
+             :param y_start: starting position of the y-axis
+             :param puzzle: the current puzzle
+             :return: the y, x coordinates of the next empty square
         """
         for y in range(y_start, self.height):
             for x in range(x_start, self.width):
@@ -62,10 +85,10 @@ class Solver:
 
     def _validate(self, puzzle, y, x, num):
         """ Checks the puzzle if its valid
-            :param x: x-axis location
-            :param y: y-axis location
-            :param num: The number to be tried
-            :return: If the puzzle is valid
+             :param x: x-axis location
+             :param y: y-axis location
+             :param num: The number to be tried
+             :return: If the puzzle is valid
         """
         # check the row
         for val in puzzle[y]:
@@ -84,24 +107,3 @@ class Solver:
                     return False
 
         return True
-
-raw_puzzle = [
-    [0,7,8,5,6,0,1,0,0],
-    [0,2,3,0,0,0,5,7,0],
-    [0,0,0,0,0,2,6,0,0],
-    [7,0,0,0,9,1,0,5,3],
-    [0,8,0,0,4,0,0,6,0],
-    [4,3,0,6,2,0,0,0,1],
-    [0,0,6,2,0,0,0,0,0],
-    [0,4,7,0,0,0,3,8,0],
-    [0,0,1,0,3,6,7,2,0]
-]
-
-'''raw_puzzle = [
-    [0,1,0,0],
-    [0,0,2,0],
-    [0,2,0,0],
-    [0,0,3,0]
-]'''
-
-pprint(Solver(puzzle=raw_puzzle).solve_puzzle())
