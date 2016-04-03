@@ -1,1 +1,1 @@
-THIS IS SUDOKUUUUUUU
+A python class that solves any x by x (square) sudoku puzzle
