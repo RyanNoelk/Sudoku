@@ -18,7 +18,8 @@ class Solver:
             [0,4,7,0,0,0,3,8,0],
             [0,0,1,0,3,6,7,2,0]
         ]
-        pprint(Solver(raw_puzzle).solve_puzzle())
+        solution = Solver(raw_puzzle)
+        pprint(solution.solve_puzzle())
 
         raw_puzzle = [
             [0,1,0,0],
@@ -26,7 +27,8 @@ class Solver:
             [0,2,0,0],
             [0,0,3,0]
         ]
-        pprint(Solver(raw_puzzle).solve_puzzle())
+        solution = Solver(raw_puzzle)
+        pprint(solution.solve_puzzle())
     """
     def __init__(self, puzzle):
         # The unsolved raw puzzle
