@@ -19,16 +19,16 @@ class Checker:
              [8, 9, 1, 4, 3, 6, 7, 2, 5]
          ]
         checked = Checker(puzzle)
-        pprint(checked._compare_list())
+        pprint(checked._compare_list()) -> True
 
         puzzle = [
             [2, 1, 4, 3],
             [4, 3, 2, 1],
             [3, 2, 1, 4],
-            [1, 4, 3, 2]
+            [1, 1, 1, 1]
         ]
         checked = Checker(puzzle)
-        pprint(checked.check_puzzle())
+        pprint(checked.check_puzzle()) -> False
     """
     def __init__(self, puzzle):
         # The unsolved raw puzzle
