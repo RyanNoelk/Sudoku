@@ -45,6 +45,7 @@ class Checker:
         # Predefined ranges
         self._range_box_height = range(self.box_height)
         self._range_box_width = range(self.box_width)
+        self._range_max_index = range(self.max_value)
         self._range_max_value = range(1, self.max_value + 1)
 
     def _is_complete(self):
@@ -82,26 +83,14 @@ class Checker:
                 return False
 
         # build the box
-        for box_num in self._range_max_value:
+        for box_num in self._range_max_index:
             box_list = []
-
-            y_offset = 0
-            if box_num == 4 or box_num == 5 or box_num == 6:
-                y_offset = 3
-            if box_num == 7 or box_num == 8 or box_num == 9:
-                y_offset = 6
-
-            x_offset = 0
-            if box_num == 2 or box_num == 5 or box_num == 8:
-                x_offset = 3
-            if box_num == 3 or box_num == 6 or box_num == 9:
-                x_offset = 6
-
+            y_offset = (int(box_num / self.box_height) * self.box_height)
+            x_offset = (int(box_num % self.box_width) * self.box_width)
             for y in self._range_box_height:
                 for x in self._range_box_width:
                     box_list.append(self.puzzle[y + y_offset][x + x_offset])
             # check the box
-            print box_list
             if self._compare_list(box_list) is False:
                 return False
 
