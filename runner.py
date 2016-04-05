@@ -47,10 +47,14 @@ puzzle = [
     [2, 4, 7, 1, 5, 9, 3, 8, 6],
     [8, 9, 1, 4, 3, 6, 7, 2, 5]
 ]
-pprint (puzzle)
-print
-print
-print
+checked = Checker(puzzle)
+pprint(checked.validate())
 
+puzzle = [
+    [2, 1, 4, 3],
+    [4, 3, 2, 1],
+    [3, 2, 4, 1],
+    [1, 4, 3, 2]
+]
 checked = Checker(puzzle)
 pprint(checked.validate())

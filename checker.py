@@ -45,7 +45,6 @@ class Checker:
         # Predefined ranges
         self._range_box_height = range(self.box_height)
         self._range_box_width = range(self.box_width)
-        self._range_max_index = range(self.max_value)
         self._range_max_value = range(1, self.max_value + 1)
 
     def _is_complete(self):
@@ -59,10 +58,20 @@ class Checker:
     def _compare_list(self, my_list):
         """Compare a list to self._range_max_value to see if they have the same contains
             :return: True if they are the same, False otherwise."""
-        if my_list == self._range_max_value:
-            pass
-
+        for val in self._range_max_value:
+            if val not in my_list:
+                return False
         return True
+
+    def _invert_puzzle(self):
+        """:return: An inverted puzzle"""
+        inverted_puzzle = []
+        for x in range(self.width):
+            inverted_row = []
+            for y in range(self.height):
+                inverted_row.append(self.puzzle[y][x])
+            inverted_puzzle.append(inverted_row)
+        return inverted_puzzle
 
     def validate(self):
         """:return: True if the puzzle is solve correctly, False otherwise."""
@@ -77,19 +86,21 @@ class Checker:
                 return False
 
         # check the column
-        # TODO: need to invert then compare a list to see if they contain the same numbers.
-        for my_list in self.puzzle:
+        for my_list in self._invert_puzzle():
             if self._compare_list(my_list) is False:
                 return False
 
         # build the box
-        for box_num in self._range_max_index:
+        for box_num in range(self.max_value):
             box_list = []
             y_offset = (int(box_num / self.box_height) * self.box_height)
             x_offset = (int(box_num % self.box_width) * self.box_width)
             for y in self._range_box_height:
                 for x in self._range_box_width:
-                    box_list.append(self.puzzle[y + y_offset][x + x_offset])
+                    try:
+                        box_list.append(self.puzzle[y + y_offset][x + x_offset])
+                    except:
+                        return False
             # check the box
             if self._compare_list(box_list) is False:
                 return False
