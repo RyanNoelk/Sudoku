@@ -42,6 +42,9 @@ class Solver:
         # The maximum int value of the number that can be used in the puzzle
         self.max_value = self.height if self.height > self.width else self.width
 
+        # All solved solutions
+        self.solutions = []
+
         # Predefined ranges
         self._range_box_height = range(self.box_height)
         self._range_box_width = range(self.box_width)
@@ -49,10 +52,11 @@ class Solver:
 
     def solve_puzzle(self):
         """:return: the solved puzzle"""
-        return self._solve(self.puzzle)
+        self._solve(self.puzzle)
+        return self.solutions
 
     def _solve(self, puzzle, current_y=0, current_x=0):
-        """Recursive function that solves the a sudoku puzzle using backtracking
+        """Recursive function that solves a sudoku puzzle using backtracking
             :param current_x: current position of the x-axis
             :param current_y: current position of the y-axis
             :param puzzle: the current puzzle

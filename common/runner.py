@@ -2,11 +2,9 @@
 # encoding: utf-8
 
 
-from generator import Generator
-from solver import Solver
-from checker import Checker
-
 from pprint import pprint
+
+from Sudoku.common.checker import Checker
 
 # Generate a puzzle and solve it
 puzzle = None
