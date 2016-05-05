@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,11 +14,18 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
           crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
       {% block css %}{% endblock %}
   </head>
 
   <body>
-    {% block content %}{% endblock %}
+    {# Header for the site, use the base as a default #}
+    {% block header %}{% include 'base/header.html' %}{% endblock %}
+    {# Main content #}
+    {% block content %}Content goes here!{% endblock %}
+    {# Footer for the site, use the base as a default #}
+    {% block footer %}{% include 'base/footer.html' %}{% endblock %}
+
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"
             integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="
             crossorigin="anonymous"></script>

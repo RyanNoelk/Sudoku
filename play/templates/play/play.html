@@ -1,1 +1,22 @@
 {% extends "base/base.html" %}
+
+{% load staticfiles %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'play/css/play.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div id="board">
+    <table class="sudoku_board">
+      {% for row_num in '123456789' %}
+        <tr class="sudoku_row">
+          {% for col_num in '123456789' %}
+            <td class="square"><div contenteditable>{{ col_num }}</div></td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div><!-- /.container -->
+{% endblock %}

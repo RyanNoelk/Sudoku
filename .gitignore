@@ -1,6 +1,9 @@
 *.pyc
 *.sqlite
+*.css
+*.map
 
 .idea
 .project
 .settings
+/static_root
