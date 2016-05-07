@@ -22,7 +22,7 @@
     {# Header for the site, use the base as a default #}
     {% block header %}{% include 'base/header.html' %}{% endblock %}
     {# Main content #}
-    {% block content %}Content goes here!{% endblock %}
+    <div class="content">{% block content %}Content goes here!{% endblock %}</div>
     {# Footer for the site, use the base as a default #}
     {% block footer %}{% include 'base/footer.html' %}{% endblock %}
 

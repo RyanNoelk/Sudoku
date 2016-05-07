@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 from math import sqrt
+from copy import deepcopy
 
 
 class Solver:
@@ -53,7 +54,6 @@ class Solver:
     def solve_puzzle(self):
         """:return: the solved puzzle"""
         self._solve(self.puzzle)
-        return self.solutions
 
     def _solve(self, puzzle, current_y=0, current_x=0):
         """Recursive function that solves a sudoku puzzle using backtracking
@@ -64,7 +64,8 @@ class Solver:
         """
         y, x = self._next_empty(puzzle, current_y, current_x)
         if x is None or y is None:
-            return puzzle
+            self.solutions.append(deepcopy(puzzle))
+            return None
         for write_val in self._range_max_value:
             if self._validate(puzzle, y, x, write_val):
                 puzzle[y][x] = write_val

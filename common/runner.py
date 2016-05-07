@@ -5,6 +5,7 @@
 from pprint import pprint
 
 from Sudoku.common.checker import Checker
+from Sudoku.common.solver import Solver
 
 # Generate a puzzle and solve it
 puzzle = None
@@ -15,9 +16,8 @@ raw_puzzle = [
     [0, 1, 0, 0],
     [0, 0, 2, 0],
     [0, 2, 0, 0],
-    [0, 0, 3, 0]
+    [0, 0, 0, 0]
 ]
-#pprint(Solver(raw_puzzle).solve_puzzle())
 
 raw_puzzle = [
     [0, 7, 8, 5, 6, 0, 1, 0, 0],
@@ -30,7 +30,9 @@ raw_puzzle = [
     [0, 4, 7, 0, 0, 0, 3, 8, 0],
     [0, 0, 1, 0, 3, 6, 7, 2, 0]
 ]
-#pprint(Solver(raw_puzzle).solve_puzzle())
+ss = Solver(raw_puzzle)
+ss.solve_puzzle()
+pprint(ss.solutions)
 
 
 # Example puzzles for checking the puzzle
