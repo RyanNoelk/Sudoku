@@ -30,9 +30,10 @@ class Checker:
         checked = Checker(puzzle)
         pprint(checked.check_puzzle()) -> False
     """
-    def __init__(self, puzzle):
+    def __init__(self, puzzle, check_with_zeros=False):
         # The unsolved raw puzzle
         self.puzzle = puzzle
+        self.check_with_zeros = check_with_zeros
 
         # TODO: We are assuming that we have a square puzzle, make this work for rectangles
         # The total box height and width
@@ -58,10 +59,15 @@ class Checker:
     def _compare_list(self, my_list):
         """Compare a list to self._range_max_value to see if they have the same contains
             :return: True if they are the same, False otherwise."""
-        for val in self._range_max_value:
-            if val not in my_list:
-                return False
-        return True
+
+        #TODO: implement
+        if self.check_with_zeros:
+            pass
+        else:
+            for val in self._range_max_value:
+                if val not in my_list:
+                    return False
+            return True
 
     def _invert_puzzle(self):
         """:return: An inverted puzzle"""

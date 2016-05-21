@@ -67,7 +67,7 @@ class Solver:
             self.solutions.append(deepcopy(puzzle))
             return None
         for write_val in self._range_max_value:
-            if self._validate(puzzle, y, x, write_val):
+            if self._validate_insertion(puzzle, y, x, write_val):
                 puzzle[y][x] = write_val
                 if self._solve(puzzle, y, x) is not None:
                     return puzzle
@@ -90,7 +90,7 @@ class Solver:
 
         return None, None
 
-    def _validate(self, puzzle, y, x, num):
+    def _validate_insertion(self, puzzle, y, x, num):
         """ Checks the puzzle if its valid
              :param x: x-axis location
              :param y: y-axis location

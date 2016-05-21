@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-
 from pprint import pprint
 
-from Sudoku.common.checker import Checker
-from Sudoku.common.solver import Solver
+from common.checker import Checker
+from common.solver import Solver
+from common.generator import Generator
 
 # Generate a puzzle and solve it
 puzzle = None
@@ -58,3 +58,17 @@ puzzle = [
 ]
 checked = Checker(puzzle)
 pprint(checked.validate())
+puzzle = [
+    [2, 3, 2, 1],
+    [2, 1, 1, 1],
+    [2, 2, 2, 4],
+    [1, 3, 1, 2]
+]
+checked = Checker(puzzle)
+pprint(checked.validate())
+
+'''
+generate = Generator(4, 4)
+for row in generate.generate():
+    print row
+    '''
