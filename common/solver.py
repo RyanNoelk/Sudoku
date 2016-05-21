@@ -31,7 +31,7 @@ class Solver:
         solution = Solver(raw_puzzle)
         pprint(solution.solve_puzzle())
     """
-    def __init__(self, puzzle):
+    def __init__(self, puzzle, find_unique_solution=False):
         # The unsolved raw puzzle
         self.puzzle = puzzle
 
@@ -45,6 +45,7 @@ class Solver:
 
         # All solved solutions
         self.solutions = []
+        self.find_unique_solution = find_unique_solution
 
         # Predefined ranges
         self._range_box_height = range(self.box_height)
@@ -62,6 +63,9 @@ class Solver:
             :param puzzle: the current puzzle
             :return: a valid puzzle or None
         """
+        if self.find_unique_solution:
+            if len(self.solutions) > 1:
+                return None
         y, x = self._next_empty(puzzle, current_y, current_x)
         if x is None or y is None:
             self.solutions.append(deepcopy(puzzle))

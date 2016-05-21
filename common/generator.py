@@ -39,7 +39,7 @@ class Generator:
             print puzzle
 
             if Checker(puzzle, True).validate():
-                ss = Solver(puzzle)
+                ss = Solver(puzzle, True)
                 ss.solve_puzzle()
                 print len(ss.solutions)
                 if 0 == len(ss.solutions):
