@@ -35,19 +35,13 @@ class Generator:
                 continue
             puzzle[rand_y][rand_x] = randrange(1, self.max_value)
 
-            print
-            print puzzle
-
             if Checker(puzzle, True).validate():
                 ss = Solver(puzzle, True)
                 ss.solve_puzzle()
-                print len(ss.solutions)
                 if 0 == len(ss.solutions):
                     puzzle[rand_y][rand_x] = 0
                 elif 1 == len(ss.solutions):
                     return ss.solutions[0]
-                for row in puzzle:
-                    print row
             else:
                 puzzle[rand_y][rand_x] = 0
         return puzzle

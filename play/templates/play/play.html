@@ -9,9 +9,9 @@
   <div class="container">
     <div id="board">
       <table class="sudoku_board">
-        {% for row_num in '123456789' %}
+        {% for row_num in puzzle %}
           <tr class="sudoku_row">
-            {% for col_num in '123456789' %}
+            {% for col_num in row_num %}
               <td class="square
                          {% if forloop.counter  == 3 or forloop.counter == 6 %}thick_boarder_right{% endif %}
                          {% if forloop.parentloop.counter == 3 or forloop.parentloop.counter == 6 %}thick_boarder_bottom{% endif %}">
