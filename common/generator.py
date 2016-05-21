@@ -46,17 +46,11 @@ class Generator:
                 puzzle[rand_y][rand_x] = 0
         return puzzle
 
-    def _has_empty_cells(self, puzzle):
-        for tmp in puzzle:
-            if 0 in tmp:
-                return True
-        return False
-
     def _generate_blank_puzzle(self):
         puzzle = []
         for y in self._range_height:
-            tmp = []
+            row = []
             for x in self._range_width:
-                tmp.append(0)
-            puzzle.append(tmp)
+                row.append(0)
+            puzzle.append(row)
         return puzzle
