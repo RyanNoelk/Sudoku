@@ -9,12 +9,22 @@
     height: 40px;
     border-right: 1px solid $black;
     border-bottom: 1px solid $black;
-    text-align: center;
     &.thick_boarder_bottom {
       border-bottom: 3px solid $black;
     }
     &.thick_boarder_right {
       border-right: 3px solid $black;
+    }
+    div {
+      text-align: center;
+    }
+    input {
+      outline: none;
+      border: none;
+      border-color: transparent;
+      width: 99%;
+      height: 99%;
+      text-align: center;
     }
   }
 }

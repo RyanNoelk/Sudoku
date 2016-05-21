@@ -15,7 +15,11 @@
               <td class="square
                          {% if forloop.counter  == 3 or forloop.counter == 6 %}thick_boarder_right{% endif %}
                          {% if forloop.parentloop.counter == 3 or forloop.parentloop.counter == 6 %}thick_boarder_bottom{% endif %}">
-                <div contenteditable>{{ col_num }}</div>
+                {% if col_num != 0 %}
+                <div>{{ col_num }}</div>
+                {% else %}
+                  <input class="js-{{ forloop.counter }}:{{ forloop.parentloop.counter }}" type="text">
+                {% endif %}
               </td>
             {% endfor %}
           </tr>
@@ -27,3 +31,8 @@
   <button class="btn btn-lg">New Game</button>
   </div><!-- /.container -->
 {% endblock %}
+
+{% block js %}
+  <script src="{% static 'play/js/play.js' %}"></script>
+{% endblock %}
+
