@@ -62,7 +62,9 @@ class Checker:
 
         #TODO: implement
         if self.check_with_zeros:
-            pass
+            for val in self._range_max_value:
+                if my_list.count(val) > 1:
+                    return False
         else:
             for val in self._range_max_value:
                 if val not in my_list:
@@ -83,7 +85,7 @@ class Checker:
         """:return: True if the puzzle is solve correctly, False otherwise."""
 
         # check if the puzzle is complete
-        if not self._is_complete():
+        if not self._is_complete() and not self.check_with_zeros:
             return False
 
         # check the row

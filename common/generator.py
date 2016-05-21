@@ -34,24 +34,22 @@ class Generator:
             if puzzle[rand_y][rand_x] != 0:
                 continue
             puzzle[rand_y][rand_x] = randrange(1, self.max_value)
+
             print
             print puzzle
-            ss = Solver(puzzle)
-            ss.solve_puzzle()
-            checked = Checker(puzzle)
-            print len(ss.solutions)
-            if 0 == len(ss.solutions):
-                puzzle[rand_y][rand_x] = 0
-            elif 1 == len(ss.solutions):
-                if checked.validate():
-                    return ss.solutions[0]
-                else:
+
+            if Checker(puzzle, True).validate():
+                ss = Solver(puzzle)
+                ss.solve_puzzle()
+                print len(ss.solutions)
+                if 0 == len(ss.solutions):
                     puzzle[rand_y][rand_x] = 0
-
-            for row in puzzle:
-                print row
-            print
-
+                elif 1 == len(ss.solutions):
+                    return ss.solutions[0]
+                for row in puzzle:
+                    print row
+            else:
+                puzzle[rand_y][rand_x] = 0
         return puzzle
 
     def _has_empty_cells(self, puzzle):

@@ -67,8 +67,7 @@ puzzle = [
 checked = Checker(puzzle)
 pprint(checked.validate())
 
-'''
-generate = Generator(4, 4)
+
+generate = Generator(9, 9)
 for row in generate.generate():
     print row
-    '''
