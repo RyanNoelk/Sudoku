@@ -16,7 +16,7 @@
                          {% if forloop.counter  == 3 or forloop.counter == 6 %}thick_boarder_right{% endif %}
                          {% if forloop.parentloop.counter == 3 or forloop.parentloop.counter == 6 %}thick_boarder_bottom{% endif %}">
                 {% if col_num != 0 %}
-                <div>{{ col_num }}</div>
+                  <div>{{ col_num }}</div>
                 {% else %}
                   <input class="js-{{ forloop.counter }}:{{ forloop.parentloop.counter }}" type="text">
                 {% endif %}
@@ -26,9 +26,13 @@
         {% endfor %}
       </table>
     </div><!-- /.board -->
-  <button class="btn btn-primary btn-lg">Check!</button>
-  <button class="btn btn-danger btn-lg">Reset</button>
-  <button class="btn btn-lg">New Game</button>
+    <div class="row">
+      <div class="col-md-6 col-xs-12 col-md-push-3">
+        <button class="btn btn-primary btn-lg js-check">Check!</button>
+        <button class="btn btn-danger btn-lg js-reset">Reset</button>
+        <button class="btn btn-lg js-new">New Game</button>
+      </div>
+    </div>
   </div><!-- /.container -->
 {% endblock %}
 
