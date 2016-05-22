@@ -20,6 +20,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^play/', include('play.urls')),
+    url(r'^', include('play.urls')),
+    url(r'^about/', include('about.urls')),
     url(r'^admin/', admin.site.urls),
 ]

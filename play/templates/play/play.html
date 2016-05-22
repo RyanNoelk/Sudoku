@@ -7,8 +7,8 @@
 
 {% block content %}
   <div class="container">
-    <div id="board">
-      <table class="sudoku_board">
+    <div id="board" class="row">
+      <table class="col-md-6 col-xs-12 col-md-push-3 sudoku_board">
         {% for row_num in puzzle %}
           <tr class="sudoku_row">
             {% for col_num in row_num %}

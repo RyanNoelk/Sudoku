@@ -17,6 +17,7 @@
     }
     div {
       text-align: center;
+      font-weight: bold;
     }
     input {
       outline: none;
@@ -25,6 +26,10 @@
       width: 99%;
       height: 99%;
       text-align: center;
+      color: $gray;
+      &:focus {
+        color: $blue;
+      }
     }
   }
 }

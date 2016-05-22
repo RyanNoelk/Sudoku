@@ -1,9 +1,8 @@
 from django.shortcuts import render_to_response
-
-
 from common.generator import Generator
 
-def index(request):
+
+def play(request):
     #puzzle = Generator(9, 9).generate()
     puzzle = [
         [0, 7, 8, 5, 6, 0, 1, 0, 0],
