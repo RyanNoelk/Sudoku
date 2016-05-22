@@ -38,6 +38,7 @@ class PlayView(TemplateView):
 
         return context
 
+
 #@cbv_decorator(require_http_methods(['GET']))
 class APIView(PlayView):
     """Django class-based view for the ajax api."""

@@ -17,7 +17,7 @@ SU.Play = function () {
     dataType : "json"
   })
     .success(function( json ) {
-      alert( json );
+      console.log( json );
     })
     .fail(function( xhr, status, errorThrown ) {
       alert( "Sorry, there was a problem!" );
@@ -31,13 +31,25 @@ SU.Play = function () {
   };
 
   var getPuzzle = function () {
-    return 1
+    var puzzle = [], row = [];
+    $('.js-cell').each(function(index) {
+      var val = $(this).text();
+      if (val == '') { val = 0; }
+      row.push(parseInt(val));
+      //TODO: make this dynamic
+      if ((index+1) % 9 == 0) {
+        puzzle.push(row);
+        row = []
+      }
+    });
+
+    return JSON.stringify(puzzle);
   };
 
   return {
     init: function () {
       $('.js-check').on('click', function () {
-        ajax()
+        ajax();
       });
     },
   };
