@@ -6,16 +6,16 @@ $(document).ready(function() {
 });
 
 SU.Play = function () {
-  var ajax = function () {
-  $.ajax({
-    url: "/api/",
-    data: {
-      action: 123,
-      puzzle: getPuzzle()
-    },
-    type: "GET",
-    dataType : "json"
-  })
+  var ajax = function (action) {
+    $.get({
+      url: "/api/",
+      data: {
+        action: action,
+        puzzle: getPuzzle()
+      },
+      type: "GET",
+      dataType : "json"
+    })
     .success(function( json ) {
       console.log( json );
     })
@@ -26,7 +26,7 @@ SU.Play = function () {
       console.dir( xhr );
     })
     .always(function( xhr, status ) {
-      alert( "The request is complete!" );
+      console.log( "The request is complete!" );
     });
   };
 
@@ -49,7 +49,7 @@ SU.Play = function () {
   return {
     init: function () {
       $('.js-check').on('click', function () {
-        ajax();
+        ajax('check');
       });
     },
   };

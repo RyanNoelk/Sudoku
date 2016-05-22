@@ -44,14 +44,16 @@ class Checker:
         self.max_value = self.height if self.height > self.width else self.width
 
         # Predefined ranges
+        self._range_height = range(self.height)
+        self._range_width = range(self.width)
         self._range_box_height = range(self.box_height)
         self._range_box_width = range(self.box_width)
         self._range_max_value = range(1, self.max_value + 1)
 
     def _is_complete(self):
         """:return: False if there is still an empty space left in the puzzle, True otherwise."""
-        for y in range(self.height):
-            for x in range(self.width):
+        for y in self._range_height:
+            for x in self._range_width:
                 if 0 == self.puzzle[y][x]:
                     return False
         return True
@@ -74,9 +76,9 @@ class Checker:
     def _invert_puzzle(self):
         """:return: An inverted puzzle"""
         inverted_puzzle = []
-        for x in range(self.width):
+        for x in self._range_width:
             inverted_row = []
-            for y in range(self.height):
+            for y in self._range_height:
                 inverted_row.append(self.puzzle[y][x])
             inverted_puzzle.append(inverted_row)
         return inverted_puzzle

@@ -2,6 +2,7 @@ from django.http import Http404, JsonResponse
 from django.views.generic.base import TemplateView
 
 from common.generator import Generator
+from common.checker import Checker
 
 
 class PlayView(TemplateView):
@@ -19,7 +20,18 @@ class PlayView(TemplateView):
 
     def get_context_data(self, **kwargs):
         """Get context data for new puzzles."""
-        puzzle = Generator(9, 9).generate()
+        #puzzle = Generator(9, 9).generate()
+        puzzle = [
+            [0, 7, 8, 5, 6, 0, 1, 0, 0],
+            [0, 2, 3, 0, 0, 0, 5, 7, 0],
+            [0, 0, 0, 0, 0, 2, 6, 0, 0],
+            [7, 0, 0, 0, 9, 1, 0, 5, 3],
+            [0, 8, 0, 0, 4, 0, 0, 6, 0],
+            [4, 3, 0, 6, 2, 0, 0, 0, 1],
+            [0, 0, 6, 2, 0, 0, 0, 0, 0],
+            [0, 4, 7, 0, 0, 0, 3, 8, 0],
+            [0, 0, 1, 0, 3, 6, 7, 2, 0]
+        ]
 
         context = {
           'puzzle': puzzle,
@@ -37,14 +49,32 @@ class APIView(PlayView):
         super(APIView, self).__init__(**kwargs)
 
     def get(self, request, *args, **kwargs):
-        context = self.get_context_data(**kwargs)
+        print kwargs
+        print args
+        print kwargs
+
+        context = self.get_context_data(request, **kwargs)
         return JsonResponse(context)
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, request, **kwargs):
         """Get context function for the api."""
 
+        print kwargs
+        print kwargs
+        print kwargs
+
+        puzzle = request.GET.get('puzzle', None)
+
+        print puzzle
+        print puzzle
+        print puzzle
+        print puzzle
+        if puzzle:
+            checked = Checker(puzzle).validate()
+        else:
+            checked = None
         context = {
-            'puzzle': '123',
+            'output': checked,
         }
 
         return context

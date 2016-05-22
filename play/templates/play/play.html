@@ -16,9 +16,9 @@
                          {% if forloop.counter  == 3 or forloop.counter == 6 %}thick_boarder_right{% endif %}
                          {% if forloop.parentloop.counter == 3 or forloop.parentloop.counter == 6 %}thick_boarder_bottom{% endif %}">
                 {% if col_num != 0 %}
-                  <div class="js-cell js-pos-{{ forloop.counter }}:{{ forloop.parentloop.counter }}">{{ col_num }}</div>
+                  <div class="js-cell">{{ col_num }}</div>
                 {% else %}
-                  <input class="js-cell js-pos-{{ forloop.counter }}:{{ forloop.parentloop.counter }}" type="text">
+                  <input class="js-cell" type="text">
                 {% endif %}
               </td>
             {% endfor %}
