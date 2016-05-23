@@ -1,34 +1,37 @@
 //TODO: I should use compass...
 @import '../../../../base/static/base/css/styleguide';
-
-.sudoku_board {
-  border: 3px solid $black;
-  margin-bottom: 10px;
-  .square {
-    width: 50px;
-    height: 40px;
-    border-right: 1px solid $black;
-    border-bottom: 1px solid $black;
-    &.thick_boarder_bottom {
-      border-bottom: 3px solid $black;
-    }
-    &.thick_boarder_right {
-      border-right: 3px solid $black;
-    }
-    div {
-      text-align: center;
-      font-weight: bold;
-    }
-    input {
-      outline: none;
-      border: none;
-      border-color: transparent;
-      width: 99%;
-      height: 99%;
-      text-align: center;
-      color: $gray;
-      &:focus {
-        color: $blue;
+#board {
+  margin: 0;
+  .sudoku_board {
+    border: 3px solid $black;
+    margin-bottom: 10px;
+    .square {
+      font-size: 18px;
+      width: 50px;
+      height: 50px;
+      border-right: 1px solid $black;
+      border-bottom: 1px solid $black;
+      &.thick_boarder_bottom {
+        border-bottom: 3px solid $black;
+      }
+      &.thick_boarder_right {
+        border-right: 3px solid $black;
+      }
+      div {
+        text-align: center;
+        font-weight: bold;
+      }
+      input {
+        outline: none;
+        border: none;
+        border-color: transparent;
+        width: 99%;
+        height: 99%;
+        text-align: center;
+        color: $gray;
+        &:focus {
+          color: $blue;
+        }
       }
     }
   }

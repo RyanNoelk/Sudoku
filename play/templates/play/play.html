@@ -8,7 +8,7 @@
 {% block content %}
   <div class="container">
     <div id="board" class="row">
-      <table class="col-md-6 col-xs-12 col-md-push-3 sudoku_board">
+      <table class="col-md-8 col-xs-12 col-md-push-2 sudoku_board">
         {% for row_num in puzzle %}
           <tr class="sudoku_row">
             {% for col_num in row_num %}
@@ -27,7 +27,7 @@
       </table>
     </div><!-- /.board -->
     <div class="row">
-      <div class="col-md-6 col-xs-12 col-md-push-3">
+      <div class="col-md-8 col-xs-12 col-md-push-2">
         <button class="btn btn-primary btn-lg js-check">Check Me</button>
         <button class="btn btn-success btn-lg pull-right js-new">New Game</button>
       </div>

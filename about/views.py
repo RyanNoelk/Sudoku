@@ -1,43 +1,33 @@
-from django.shortcuts import render_to_response
+from django.views.generic.base import TemplateView
 
 
-from common.generator import Generator
+class ContactView(TemplateView):
+    """Django class-based view for the new cities browse page."""
 
-def about(request):
-    #puzzle = Generator(9, 9).generate()
-    puzzle = [
-        [0, 7, 8, 5, 6, 0, 1, 0, 0],
-        [0, 2, 3, 0, 0, 0, 5, 7, 0],
-        [0, 0, 0, 0, 0, 2, 6, 0, 0],
-        [7, 0, 0, 0, 9, 1, 0, 5, 3],
-        [0, 8, 0, 0, 4, 0, 0, 6, 0],
-        [4, 3, 0, 6, 2, 0, 0, 0, 1],
-        [0, 0, 6, 2, 0, 0, 0, 0, 0],
-        [0, 4, 7, 0, 0, 0, 3, 8, 0],
-        [0, 0, 1, 0, 3, 6, 7, 2, 0]
-    ]
+    template_name = 'about/contact.html'
 
-    context = {'puzzle': puzzle}
+    def __init__(self, **kwargs):
+        """Initialize a new `PlayView` instance."""
+        super(ContactView, self).__init__(**kwargs)
 
-    print context
-    return render_to_response('about/contact.html', context)
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)
+
+    def get_context_data(self, **kwargs):
+        """Get context data for new puzzles."""
+
+        return {}
 
 
-def contact(request):
-    #puzzle = Generator(9, 9).generate()
-    puzzle = [
-        [0, 7, 8, 5, 6, 0, 1, 0, 0],
-        [0, 2, 3, 0, 0, 0, 5, 7, 0],
-        [0, 0, 0, 0, 0, 2, 6, 0, 0],
-        [7, 0, 0, 0, 9, 1, 0, 5, 3],
-        [0, 8, 0, 0, 4, 0, 0, 6, 0],
-        [4, 3, 0, 6, 2, 0, 0, 0, 1],
-        [0, 0, 6, 2, 0, 0, 0, 0, 0],
-        [0, 4, 7, 0, 0, 0, 3, 8, 0],
-        [0, 0, 1, 0, 3, 6, 7, 2, 0]
-    ]
+class AboutView(TemplateView):
+    """Django class-based view for the new cities browse page."""
 
-    context = {'puzzle': puzzle}
+    template_name = 'about/about.html'
 
-    print context
-    return render_to_response('about/about.html', context)
+    def __init__(self, **kwargs):
+        """Initialize a new `PlayView` instance."""
+        super(AboutView, self).__init__(**kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.render_to_response({})
