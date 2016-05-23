@@ -42,9 +42,6 @@ class Generator:
             if Checker(puzzle, True).validate():
                 ss = Solver(puzzle, True)
                 ss.solve_puzzle()
-                print len(ss.solutions)
-                print len(ss.solutions)
-                print len(ss.solutions)
                 if 0 == len(ss.solutions):
                     puzzle[rand_y][rand_x] = 0
                 elif 1 == len(ss.solutions):
@@ -54,7 +51,6 @@ class Generator:
             else:
                 puzzle[rand_y][rand_x] = 0
 
-            print puzzle
         return puzzle
 
     def _generate_blank_puzzle(self):

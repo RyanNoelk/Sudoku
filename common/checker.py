@@ -31,7 +31,7 @@ class Checker:
         pprint(checked.check_puzzle()) -> False
     """
     def __init__(self, puzzle, check_with_zeros=False):
-        # The unsolved raw puzzle
+        # The puzzle
         self.puzzle = puzzle
         self.check_with_zeros = check_with_zeros
 
@@ -62,7 +62,6 @@ class Checker:
         """Compare a list to self._range_max_value to see if they have the same contains
             :return: True if they are the same, False otherwise."""
 
-        #TODO: implement
         if self.check_with_zeros:
             for val in self._range_max_value:
                 if my_list.count(val) > 1:
@@ -87,8 +86,9 @@ class Checker:
         """:return: True if the puzzle is solve correctly, False otherwise."""
 
         # check if the puzzle is complete
-        if not self._is_complete() and not self.check_with_zeros:
-            return False
+        if not self._is_complete():
+            if not self.check_with_zeros:
+                return False
 
         # check the row
         for my_list in self.puzzle:

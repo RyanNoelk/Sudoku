@@ -20,7 +20,6 @@ SU.Play = function () {
       console.log( json );
     })
     .fail(function( xhr, status, errorThrown ) {
-      alert( "Sorry, there was a problem!" );
       console.log( "Error: " + errorThrown );
       console.log( "Status: " + status );
       console.dir( xhr );
@@ -34,7 +33,12 @@ SU.Play = function () {
     var puzzle = [], row = [];
     $('.js-cell').each(function(index) {
       var val = $(this).text();
-      if (val == '') { val = 0; }
+      if (val == '') {
+        val = $(this).val();
+        if (val == '') {
+          val = 0;
+        }
+      }
       row.push(parseInt(val));
       //TODO: make this dynamic
       if ((index+1) % 9 == 0) {
@@ -42,7 +46,7 @@ SU.Play = function () {
         row = []
       }
     });
-
+    
     return JSON.stringify(puzzle);
   };
 
@@ -51,6 +55,9 @@ SU.Play = function () {
       $('.js-check').on('click', function () {
         ajax('check');
       });
-    },
+      $('.js-new').on('click', function () {
+        location.reload();
+      });
+    }
   };
 }();
