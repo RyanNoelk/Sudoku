@@ -1,0 +1,13 @@
+.sudoku_board {
+  border: 3px solid #000000;
+  margin-bottom: 10px; }
+  .sudoku_board .square {
+    width: 50px;
+    height: 40px;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    text-align: center; }
+    .sudoku_board .square.thick_boarder_bottom {
+      border-bottom: 3px solid #000000; }
+    .sudoku_board .square.thick_boarder_right {
+      border-right: 3px solid #000000; }
