@@ -1,3 +1,10 @@
+.alert {
+  display: none; }
+
+.alert-blank {
+  display: block;
+  padding-top: 10px; }
+
 #board {
   margin: 0; }
   #board .sudoku_board {

@@ -58,11 +58,13 @@ class APIView(PlayView):
         puzzle = json.loads(request.GET.get('puzzle', None))
         if puzzle:
             checked = Checker(puzzle).validate()
+            if not checked:
+                checked = Checker(puzzle, True).validate()
         else:
-            checked = None
+            checked = 'error'
 
         context = {
-            'output': checked,
+            'result': checked,
         }
 
         return context

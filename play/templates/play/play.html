@@ -7,6 +7,28 @@
 
 {% block content %}
   <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-xs-12 col-md-push-2 alerts">
+        <div class="alert alert-blank js-alert-blank" role="alert"></div>
+
+        <div class="alert alert-warning alert-dismissible js-alert-warning" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Warning!</strong> You haven't finished the puzzle yet!
+        </div>
+        <div class="alert alert-danger alert-dismissible js-alert-danger" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Sorry!</strong> The puzzle is incorrect!
+        </div>
+        <div class="alert alert-danger alert-dismissible js-alert-error" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Oops!</strong> Looks like there was a problem checking your puzzle. Please try again!
+        </div>
+        <div class="alert alert-success alert-dismissible js-alert-success" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Success!</strong> You completed finished the puzzle yet!
+        </div>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
     <div id="board" class="row">
       <table class="col-md-8 col-xs-12 col-md-push-2 sudoku_board">
         {% for row_num in puzzle %}

@@ -17,12 +17,18 @@ SU.Play = function () {
       dataType : "json"
     })
     .success(function( json ) {
-      console.log( json );
+      if (json.output == 'False') {
+        $(".js-alert-error").show();
+      }
+      else {
+        $(".js-alert-error").show();
+      }
     })
     .fail(function( xhr, status, errorThrown ) {
       console.log( "Error: " + errorThrown );
       console.log( "Status: " + status );
       console.dir( xhr );
+      $(".js-alert-error").show();
     })
     .always(function( xhr, status ) {
       console.log( "The request is complete!" );
