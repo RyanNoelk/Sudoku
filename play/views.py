@@ -2,8 +2,9 @@ from django.http import Http404, JsonResponse
 from django.views.generic.base import TemplateView
 import json
 
-from common.generator import Generator
 from common.checker import Checker
+
+from play.models import Puzzle, PuzzleValue
 
 
 class PlayView(TemplateView):
@@ -32,7 +33,19 @@ class PlayView(TemplateView):
             [0, 4, 0, 0, 0, 0, 0, 3, 0],
             [0, 0, 7, 1, 4, 8, 6, 0, 2]
         ]
-        #puzzle = Generator(9, 9).generate()
+
+        puzzle_id = 1
+        db_puzzle = Puzzle.objects.filter(pk=puzzle_id)
+        values = PuzzleValue.objects.filter(Puzzle__pk=db_puzzle.id)
+        puzzle = []
+        for y in range(db_puzzle.height):
+            row = []
+            for x in range(db_puzzle.width):
+                row.append(0)
+            puzzle.append(row)
+
+        for value in values:
+            puzzle[value.y_cord][value.x_cord] = value
 
         context = {
           'puzzle': puzzle,

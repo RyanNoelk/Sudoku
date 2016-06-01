@@ -6,3 +6,4 @@
 .project
 .settings
 /static_root
+*.cnf
