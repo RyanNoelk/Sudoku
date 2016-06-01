@@ -32,9 +32,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """Create puzzles."""
-        num = options.get('num', 50)
+        '''num = options.get('num', 50)
         height = options.get('height', 9)
-        width = options.get('width', 9)
+        width = options.get('width', 9)'''
+        num = 50
+        height = 9
+        width = 9
         for i in range(num):
             puzzle = Generator(height, width).generate()
             db_puzzle = Puzzle(height=height, width=width)
