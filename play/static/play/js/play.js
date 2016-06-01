@@ -61,7 +61,7 @@ SU.Play = function () {
       $('.js-check').on('click', function () {
         ajax('check');
       });
-      $('.js-new').on('click', function () {
+      $('.js-reset').on('click', function () {
         location.reload();
       });
     }
