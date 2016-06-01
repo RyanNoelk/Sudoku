@@ -28,8 +28,6 @@ class Generator:
     def generate(self):
         puzzle = self._generate_blank_puzzle()
         empty = self._generate_blank_puzzle_tuples()
-        max_size = len(empty)
-        print empty
 
         while True:
             rand = choice(empty)

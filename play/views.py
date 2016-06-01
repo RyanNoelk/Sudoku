@@ -1,6 +1,7 @@
 from django.http import Http404, JsonResponse
 from django.views.generic.base import TemplateView
 import json
+import random
 
 from common.checker import Checker
 
@@ -22,30 +23,22 @@ class PlayView(TemplateView):
 
     def get_context_data(self, **kwargs):
         """Get context data for new puzzles."""
-        puzzle = [
-            [8, 0, 0, 0, 0, 0, 0, 4, 0],
-            [5, 7, 2, 0, 0, 0, 3, 0, 0],
-            [3, 0, 4, 8, 6, 5, 0, 0, 7],
-            [2, 0, 0, 0, 8, 3, 0, 0, 0],
-            [0, 0, 0, 6, 1, 4, 5, 0, 0],
-            [4, 0, 0, 5, 0, 0, 0, 7, 1],
-            [0, 0, 5, 0, 3, 7, 0, 0, 4],
-            [0, 4, 0, 0, 0, 0, 0, 3, 0],
-            [0, 0, 7, 1, 4, 8, 6, 0, 2]
-        ]
 
-        puzzle_id = 1
-        db_puzzle = Puzzle.objects.filter(pk=puzzle_id)
-        values = PuzzleValue.objects.filter(Puzzle__pk=db_puzzle.id)
+        # Get random Puzzle from the DB
+        last = Puzzle.objects.count() - 1
+        index = random.randint(0, last)
+        db_puzzle = Puzzle.objects.all()[index]
+
+        # Load blank puzzle with replace it with the values of the loaded puzzle
+        values = PuzzleValue.objects.filter(puzzle__id=db_puzzle.id)
         puzzle = []
         for y in range(db_puzzle.height):
             row = []
             for x in range(db_puzzle.width):
                 row.append(0)
             puzzle.append(row)
-
         for value in values:
-            puzzle[value.y_cord][value.x_cord] = value
+            puzzle[value.y_cord][value.x_cord] = value.value
 
         context = {
           'puzzle': puzzle,
