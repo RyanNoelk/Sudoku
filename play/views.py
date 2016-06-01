@@ -1,8 +1,9 @@
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse
 from django.views.generic.base import TemplateView
 import json
 import random
 from common.checker import Checker
+from django.shortcuts import redirect
 
 from play.models import Puzzle, PuzzleValue
 
@@ -23,7 +24,7 @@ class PlayView(TemplateView):
             # Get random Puzzle id from the DB
             last = Puzzle.objects.count() - 1
             puzzle_id = random.randint(1, last)
-            return HttpResponseRedirect('/' + str(puzzle_id))
+            return redirect('play', puzzle_id=str(puzzle_id))
         else:
             context = self.get_context_data(**kwargs)
             return self.render_to_response(context)
