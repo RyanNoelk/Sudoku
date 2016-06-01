@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'base',
     'play',
     'about',
+    'common',
 ]
 
 MIDDLEWARE_CLASSES = [
