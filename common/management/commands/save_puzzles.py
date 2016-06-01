@@ -13,8 +13,9 @@ class Command(BaseCommand):
 
     help = "python manage.py save_puzzle --help"
 
-    option_list = BaseCommand.option_list + (
-        '''make_option('--num',
+    option_list = BaseCommand.option_list
+    '''+ (
+        make_option('--num',
                     action='store',
                     type='int',
                     default="",
@@ -28,7 +29,7 @@ class Command(BaseCommand):
                     action='store',
                     type='int',
                     default="",
-                    help='Width of the puzzle'),''')
+                    help='Width of the puzzle'),)'''
 
     def handle(self, *args, **options):
         """Create puzzles."""
