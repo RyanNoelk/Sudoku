@@ -1,12 +1,12 @@
-##This is a simple django sudoku web app. It contains:
-- Python classes that generate, solve, and check any x by x (square) sudoku puzzle
-- UsI using Bootstrap and jQuery
+##This is a simple Django sudoku web app. It contains:
+- Python classes that generate, solve, and check any x by x (square) sudoku puzzle.
+- UI constructed with Bootstrap and jQuery.
 
 ##Setting up the web app
-- Before you can start the app, you willneed to create a `private_settings.py` file within `base/`. You will need you add a secet key as well as setting `DEBUG`.
-- You may also wish to setup your own database. By default this uses SQLite3. The models are quite simple so it should run on most DBs compatble with django.
+- Before you can start the app, you will need to create a `private_settings.py` file within `base/`. You will need you add a secret key as well as setting `DEBUG`.
+- You may also wish to setup your own database. By default this uses SQLite3. The models are quite simple so it should run on most DBs compatible with Django.
 - To seed the database; run the migrations then run `python manage.py save_puzzles.py` to create random puzzles and add them to the DB.
-
+- 
 ##Generating puzzles
 The generator will return an x by y list of lists of numbers, where 0 is an empty cell.
 ```
@@ -33,7 +33,7 @@ Output of above:
 
 
 ##Solving puzzles
-The solver will return a list of all the possaible solutions to the puzzle. There are some examples of solving puzzles within `common/runner.py`.
+The solver will return a list of all the possible solutions to the puzzle. There are some examples of solving puzzles within `common/runner.py`.
 ```
 from common.solver import Solver
 
@@ -54,7 +54,7 @@ print(ss.solutions)
 ```
 
 ##Checking puzzles
-The checker will return True or False. True if the Puzzle is correct and Flase otherwise. If `check_with_zeros=True`, The puzzle will also return true if the puzzle is still solvable even if there are 0s left in the puzzle. There are some examples of checking puzzles within `common/runner.py`.
+The checker will return True or False. True if the Puzzle is correct and False otherwise. If `check_with_zeros=True`, The puzzle will also return true if the puzzle is still solvable even if there are 0s left in the puzzle. There are some examples of checking puzzles within `common/runner.py`.
 ```
 from common.solver import Solver
 
