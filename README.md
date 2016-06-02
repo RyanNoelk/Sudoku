@@ -6,7 +6,7 @@
 - Before you can start the app, you will need to create a `private_settings.py` file within `base/`. You will need you add a secret key as well as setting `DEBUG`.
 - You may also wish to setup your own database. By default this uses SQLite3. The models are quite simple so it should run on most DBs compatible with Django.
 - To seed the database; run the migrations then run `python manage.py save_puzzles.py` to create random puzzles and add them to the DB.
-- 
+
 ##Generating puzzles
 The generator will return an x by y list of lists of numbers, where 0 is an empty cell.
 ```
