@@ -7,10 +7,6 @@ from common.checker import Checker
 from common.solver import Solver
 from common.generator import Generator
 
-# Generate a puzzle and solve it
-puzzle = None
-
-
 # Example puzzles being passed to the solve
 raw_puzzle = [
     [0, 1, 0, 0],
@@ -18,6 +14,9 @@ raw_puzzle = [
     [0, 2, 0, 0],
     [0, 0, 0, 0]
 ]
+ss = Solver(raw_puzzle)
+ss.solve_puzzle()
+pprint(ss.solutions)
 
 raw_puzzle = [
     [0, 7, 8, 5, 6, 0, 1, 0, 0],
@@ -58,6 +57,7 @@ puzzle = [
 ]
 checked = Checker(puzzle)
 pprint(checked.validate())
+
 puzzle = [
     [2, 3, 2, 1],
     [2, 1, 1, 1],
@@ -67,7 +67,7 @@ puzzle = [
 checked = Checker(puzzle)
 pprint(checked.validate())
 
-
+# Example for generating puzzles
 generate = Generator(9, 9)
 for row in generate.generate():
     print row
