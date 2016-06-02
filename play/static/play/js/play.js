@@ -3,6 +3,13 @@ var SU = SU || {};
 $(document).ready(function() {
   // Initialize the module when the page loads
   SU.Play.init();
+  $('.js-timer').timer();
+  var icon = $('.js-timer-control');
+  icon.click(function() {
+     icon.toggleClass('pause');
+     icon.toggleClass('play');
+     return false;
+  });
 });
 
 SU.Play = function () {

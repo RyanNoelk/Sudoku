@@ -49,3 +49,19 @@
     }
   }
 }
+
+.clock {
+  .play {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-left: 12px solid #000;
+    border-bottom: 8px solid transparent;
+  }
+  .pause {
+    width: 12px;
+    height: 16px;
+    border-right: 4px solid #000;
+    border-left: 4px solid #000;
+  }
+}

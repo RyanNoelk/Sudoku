@@ -13,6 +13,36 @@
         <hr>
       </div>
     </div>
+      <div class="clock js-clock">
+        <div class="js-timer"></div>
+        <div class="play js-timer-control"></div>
+      </div>
+    <div class="row">
+      <div id="board">
+        <table class="col-sm-6 col-xs-12 col-sm-push-2 sudoku_board">
+          {% for row_num in puzzle %}
+            <tr class="sudoku_row">
+              {% for col_num in row_num %}
+                <td class="square
+                           {% if forloop.counter  == 3 or forloop.counter == 6 %}thick_boarder_right{% endif %}
+                           {% if forloop.parentloop.counter == 3 or forloop.parentloop.counter == 6 %}thick_boarder_bottom{% endif %}">
+                  {% if col_num != 0 %}
+                    <div class="js-cell">{{ col_num }}</div>
+                  {% else %}
+                    <input class="js-cell" type="text">
+                  {% endif %}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </table>
+      </div><!-- /.board -->
+      <div class="col-sm-2 col-xs-12 col-sm-push-2">
+        <button class="btn btn-primary btn-lg js-check">Check Me</button>
+        <button class="btn btn-warning btn-lg pull-right js-reset">Reset</button>
+        <a href="{% url 'play' %}" class="btn btn-success btn-new-game btn-lg pull-right">New Game</a>
+      </div>
+    </div><!-- /.row -->
     <div class="row">
       <div class="col-md-8 col-xs-12 col-md-push-2 alerts">
         <div class="alert alert-blank js-alert-blank" role="alert"></div>
@@ -35,36 +65,11 @@
         </div>
       </div><!-- /.col -->
     </div><!-- /.row -->
-    <div id="board" class="row">
-      <table class="col-md-8 col-xs-12 col-md-push-2 sudoku_board">
-        {% for row_num in puzzle %}
-          <tr class="sudoku_row">
-            {% for col_num in row_num %}
-              <td class="square
-                         {% if forloop.counter  == 3 or forloop.counter == 6 %}thick_boarder_right{% endif %}
-                         {% if forloop.parentloop.counter == 3 or forloop.parentloop.counter == 6 %}thick_boarder_bottom{% endif %}">
-                {% if col_num != 0 %}
-                  <div class="js-cell">{{ col_num }}</div>
-                {% else %}
-                  <input class="js-cell" type="text">
-                {% endif %}
-              </td>
-            {% endfor %}
-          </tr>
-        {% endfor %}
-      </table>
-    </div><!-- /.board -->
-    <div class="row">
-      <div class="col-md-8 col-xs-12 col-md-push-2">
-        <button class="btn btn-primary btn-lg js-check">Check Me</button>
-        <button class="btn btn-warning btn-lg pull-right js-reset">Reset</button>
-        <a href="{% url 'play' %}" class="btn btn-success btn-new-game btn-lg pull-right">New Game</a>
-      </div>
-    </div>
   </div><!-- /.container -->
 {% endblock %}
 
 {% block js %}
+  <script src="{% static 'play/js/timer.min.js' %}"></script>
   <script src="{% static 'play/js/play.js' %}"></script>
 {% endblock %}
 
