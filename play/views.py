@@ -71,6 +71,12 @@ class APIView(PlayView):
             checked = Checker(puzzle).validate()
             if not checked:
                 checked = Checker(puzzle, True).validate()
+                if checked:
+                    checked = 'ok'
+                else:
+                    checked = 'problem'
+            else:
+                checked = 'complete'
         else:
             checked = 'error'
 

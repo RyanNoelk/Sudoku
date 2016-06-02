@@ -17,8 +17,16 @@ SU.Play = function () {
       dataType : "json"
     })
     .success(function( json ) {
-      if (json.output == 'False') {
-        $(".js-alert-error").show();
+      $(".js-alert-blank").hide();
+      clearAlerts();
+      if (json.result == 'ok') {
+        $(".js-alert-warning").show();
+      }
+      else if (json.result == 'problem') {
+        $(".js-alert-danger").show();
+      }
+      else if (json.result == 'complete') {
+        $(".js-alert-success").show();
       }
       else {
         $(".js-alert-error").show();
@@ -56,6 +64,13 @@ SU.Play = function () {
     return JSON.stringify(puzzle);
   };
 
+  var clearAlerts = function () {
+      $(".js-alert-warning").hide();
+      $(".js-alert-danger").hide();
+      $(".js-alert-success").hide();
+      $(".js-alert-error").hide();
+  };
+
   return {
     init: function () {
       $('.js-check').on('click', function () {
@@ -63,6 +78,10 @@ SU.Play = function () {
       });
       $('.js-reset').on('click', function () {
         location.reload();
+      });
+      $('.js-close-alert').on('click', function () {
+        clearAlerts();
+        $(".js-alert-blank").show();
       });
     }
   };

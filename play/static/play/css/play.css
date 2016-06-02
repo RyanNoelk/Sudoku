@@ -3,7 +3,10 @@
 
 .alert-blank {
   display: block;
-  padding-top: 10px; }
+  padding-top: 35px; }
+
+.btn-new-game {
+  margin-right: 15px; }
 
 #board {
   margin: 0; }
