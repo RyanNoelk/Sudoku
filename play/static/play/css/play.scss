@@ -6,7 +6,6 @@
 }
 .alert-blank {
   display: block;
-  padding-top: 35px;
 }
 
 .side-panel {
@@ -16,40 +15,40 @@
   }
 }
 
-  .sudoku_board {
-    border: 3px solid $black;
-    margin: 0;
-    margin-bottom: 10px;
-    .square {
-      font-size: 18px;
-      height: 50px;
-      border-right: 1px solid $black;
-      border-bottom: 1px solid $black;
-      &.thick_boarder_bottom {
-        border-bottom: 3px solid $black;
-      }
-      &.thick_boarder_right {
-        border-right: 3px solid $black;
-      }
-      div {
-        text-align: center;
-        font-weight: bold;
-      }
-      input {
-        outline: none;
-        border: none;
-        border-color: transparent;
-        width: 99%;
-        height: 99%;
-        text-align: center;
-        font-size: 20px;
-        color: $green;
-        &:focus {
-          color: $blue;
-        }
+.sudoku_board {
+  border: 3px solid $black;
+  margin: 0;
+  margin-bottom: 10px;
+  .square {
+    font-size: 18px;
+    height: 50px;
+    border-right: 1px solid $black;
+    border-bottom: 1px solid $black;
+    &.thick_boarder_bottom {
+      border-bottom: 3px solid $black;
+    }
+    &.thick_boarder_right {
+      border-right: 3px solid $black;
+    }
+    div {
+      text-align: center;
+      font-weight: bold;
+    }
+    input {
+      outline: none;
+      border: none;
+      border-color: transparent;
+      width: 99%;
+      height: 99%;
+      text-align: center;
+      font-size: 20px;
+      color: $green;
+      &:focus {
+        color: $blue;
       }
     }
   }
+}
 
 .timer {
   margin-bottom: 2px;

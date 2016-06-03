@@ -7,72 +7,76 @@
 
 {% block content %}
   <div class="container">
-    <!-- <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2>Sudoku</h2>
-        <hr>
-      </div>
-    </div>/.row -->
     <div class="row">
-      <div class="col-md-8 col-xs-12 col-md-push-2 alerts">
-        <div class="alert alert-success alert-blank js-alert-blank" role="alert">
-          <strong>Good Luck!</strong> But haven't finished the puzzle yet!
-        </div>
-        <div class="alert alert-warning alert-dismissible js-alert-warning" role="alert">
-          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-          <strong>So far so good!</strong> But you haven't finished the puzzle yet!
-        </div>
-        <div class="alert alert-danger alert-dismissible js-alert-danger" role="alert">
-          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-          <strong>Sorry!</strong> The puzzle is incorrect!
-        </div>
-        <div class="alert alert-danger alert-dismissible js-alert-error" role="alert">
-          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-          <strong>Oops!</strong> Looks like there was a problem checking your puzzle. Please try again!
-        </div>
-        <div class="alert alert-success alert-dismissible js-alert-success" role="alert">
-          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-          <strong>Success!</strong> You completed finished the puzzle yet!
-        </div>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-    <div class="row">
-      <div class="timer col-sm-6 col-xs-12">
-        <div class="play-button btn-warning pull-right js-play-button">
-          <div class="pause js-timer-control"></div>
-        </div>
-        <div class="clock pull-right">
-          <p>Play Time:&nbsp;</p><p class="js-clock"></p>
-        </div>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-    <div class="row">
-      <div class="col-sm-6 col-xs-12 col-sm-push-2">
-        <table id="board" class="sudoku_board">
-          {% for row_num in puzzle %}
-            <tr class="sudoku_row">
-              {% for col_num in row_num %}
-                <td class="square
-                           {% if forloop.counter  == 3 or forloop.counter == 6 %}thick_boarder_right{% endif %}
-                           {% if forloop.parentloop.counter == 3 or forloop.parentloop.counter == 6 %}thick_boarder_bottom{% endif %}">
-                  {% if col_num != 0 %}
-                    <div class="js-cell">{{ col_num }}</div>
-                  {% else %}
-                    <input class="js-cell" type="text">
-                  {% endif %}
-                </td>
+      <div class="col-md-8 col-sm-10 col-xs-12 col-md-push-2 col-sm-push-1">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="alert alert-success alert-blank js-alert-blank" role="alert">
+              <strong>Good Luck!</strong> But haven't finished the puzzle yet!
+            </div>
+            <div class="alert alert-warning alert-dimdissible js-alert-warning" role="alert">
+              <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
+              <strong>So far so good!</strong> But you haven't finished the puzzle yet!
+            </div>
+            <div class="alert alert-danger alert-dimdissible js-alert-danger" role="alert">
+              <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
+              <strong>Sorry!</strong> The puzzle is incorrect!
+            </div>
+            <div class="alert alert-danger alert-dimdissible js-alert-error" role="alert">
+              <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
+              <strong>Oops!</strong> Looks like there was a problem checking your puzzle. Please try again!
+            </div>
+            <div class="alert alert-success alert-dimdissible js-alert-success" role="alert">
+              <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
+              <strong>Success!</strong> You completed finished the puzzle yet!
+            </div>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+        <div class="row">
+          <div class="timer col-xs-12">
+            <div class="play-button btn-warning pull-right js-play-button">
+              <div class="pause js-timer-control"></div>
+            </div>
+            <div class="clock pull-right">
+              <p>Play Time:&nbsp;</p><p class="js-clock"></p>
+            </div>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+        <div class="row">
+          <div class="col-xs-12">
+            <table id="board" class="sudoku_board">
+              {% for row_num in puzzle %}
+                <tr class="sudoku_row">
+                  {% for col_num in row_num %}
+                    <td class="square
+                               {% if forloop.counter  == 3 or forloop.counter == 6 %}thick_boarder_right{% endif %}
+                               {% if forloop.parentloop.counter == 3 or forloop.parentloop.counter == 6 %}thick_boarder_bottom{% endif %}">
+                      {% if col_num != 0 %}
+                        <div class="js-cell">{{ col_num }}</div>
+                      {% else %}
+                        <input class="js-cell" type="text">
+                      {% endif %}
+                    </td>
+                  {% endfor %}
+                </tr>
               {% endfor %}
-            </tr>
-          {% endfor %}
-        </table>
-      </div><!-- /.board -->
-      <div class="col-sm-2 col-xs-12 col-sm-push-2">
-        <div class="side-panel">
-          <button class="btn btn-primary btn-lg js-check">Check Me</button>
-          <button class="btn btn-warning btn-lg js-reset">Reset</button>
-          <a href="{% url 'play' %}" class="btn btn-success btn-new-game btn-lg">New Game</a>
-        </div>
-      </div>
+            </table>
+          </div><!-- /.board -->
+        </div><!-- /.row -->
+        <div class="row">
+          <div class="side-panel">
+            <div class="col-sm-3 col-xs-12">
+              <button class="btn btn-primary btn-lg js-check">Check Me</button>
+            </div>
+            <div class="col-sm-3 col-xs-12 col-sm-push-3">
+              <button class="btn btn-warning btn-lg js-reset">Reset</button>
+            </div>
+            <div class="col-sm-3 col-xs-12 col-sm-push-3">
+              <a href="{% url 'play' %}" class="btn btn-success btn-new-game btn-lg">New Game</a>
+            </div>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container -->
 {% endblock %}
