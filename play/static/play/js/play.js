@@ -19,38 +19,27 @@ SU.Play = function () {
     })
     .success(function( json ) {
       var bg = $(".js-bg");
-      $(".js-alert-blank").hide();
-      clearAlerts();
+      clearMessage(bg);
       if (json.result == 'ok') {
-        $(".js-alert-warning").show();
-        bg.toggleClass('bg-primary');
-        bg.toggleClass('bg-warning');
+        $(".js-message-warning").show();
+        bg.addClass('bg-warning');
       }
       else if (json.result == 'problem') {
-        $(".js-alert-danger").show();
-        bg.toggleClass('bg-primary');
-        bg.toggleClass('bg-danger');
+        $(".js-message-danger").show();
+        bg.addClass('bg-danger');
       }
       else if (json.result == 'complete') {
-        $(".js-alert-success").show();
-        bg.toggleClass('bg-primary');
-        bg.toggleClass('bg-success');
+        $(".js-message-success").show();
+        bg.addClass('bg-success');
       }
       else {
-        $(".js-alert-error").show();
-        bg.toggleClass('bg-primary');
-        bg.toggleClass('bg-danger');
+        $(".js-message-error").show();
+        bg.addClass('bg-danger');
       }
     })
     .fail(function( xhr, status, errorThrown ) {
-      console.log( "Error: " + errorThrown );
-      console.log( "Status: " + status );
-      console.dir( xhr );
-      $(".js-alert-error").show();
+      $(".js-message-error").show();
     })
-    .always(function( xhr, status ) {
-      console.log( "The request is complete!" );
-    });
   };
 
   var getPuzzle = function () {
@@ -74,11 +63,16 @@ SU.Play = function () {
     return JSON.stringify(puzzle);
   };
 
-  var clearAlerts = function () {
-      $(".js-alert-warning").hide();
-      $(".js-alert-danger").hide();
-      $(".js-alert-success").hide();
-      $(".js-alert-error").hide();
+  var clearMessage = function (bg) {
+      $(".js-message-default").hide();
+      $(".js-message-warning").hide();
+      $(".js-message-danger").hide();
+      $(".js-message-success").hide();
+      $(".js-message-error").hide();
+      bg.removeClass("bg-warning");
+      bg.removeClass("bg-success");
+      bg.removeClass("bg-danger");
+      bg.removeClass("bg-primary");
   };
 
   return {
@@ -88,10 +82,6 @@ SU.Play = function () {
       });
       $('.js-reset').on('click', function () {
         location.reload();
-      });
-      $('.js-close-alert').on('click', function () {
-        clearAlerts();
-        $(".js-alert-blank").show();
       });
     }
   };
