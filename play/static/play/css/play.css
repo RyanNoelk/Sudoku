@@ -5,8 +5,9 @@
   display: block;
   padding-top: 35px; }
 
-.btn-new-game {
-  margin-right: 15px; }
+.side-panel .btn {
+  width: 100%;
+  margin-bottom: 10px; }
 
 #board {
   margin: 0; }
@@ -33,17 +34,18 @@
         width: 99%;
         height: 99%;
         text-align: center;
-        color: #999999; }
+        font-size: 20px;
+        color: green; }
         #board .sudoku_board .square input:focus {
           color: blue; }
 
-.clock .play {
+.timer .play {
   width: 0;
   height: 0;
   border-top: 8px solid transparent;
   border-left: 12px solid #000;
   border-bottom: 8px solid transparent; }
-.clock .pause {
+.timer .pause {
   width: 12px;
   height: 16px;
   border-right: 4px solid #000;

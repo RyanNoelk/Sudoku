@@ -7,15 +7,38 @@
 
 {% block content %}
   <div class="container">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-lg-12 text-center">
         <h2>Sudoku</h2>
         <hr>
       </div>
-    </div>
-      <div class="clock js-clock">
-        <div class="js-timer"></div>
-        <div class="play js-timer-control"></div>
+    </div>/.row -->
+    <div class="row">
+      <div class="col-md-8 col-xs-12 col-md-push-2 alerts">
+        <div class="alert alert-success alert-blank js-alert-blank" role="alert">
+          <strong>Good Luck!</strong> But haven't finished the puzzle yet!
+        </div>
+        <div class="alert alert-warning alert-dismissible js-alert-warning" role="alert">
+          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
+          <strong>So far so good!</strong> But you haven't finished the puzzle yet!
+        </div>
+        <div class="alert alert-danger alert-dismissible js-alert-danger" role="alert">
+          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
+          <strong>Sorry!</strong> The puzzle is incorrect!
+        </div>
+        <div class="alert alert-danger alert-dismissible js-alert-error" role="alert">
+          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
+          <strong>Oops!</strong> Looks like there was a problem checking your puzzle. Please try again!
+        </div>
+        <div class="alert alert-success alert-dismissible js-alert-success" role="alert">
+          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
+          <strong>Success!</strong> You completed finished the puzzle yet!
+        </div>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+      <div class="timer js-timer">
+        <div class="play pull-right js-timer-control"></div>
+        <div class="pull-right clock js-clock"></div>
       </div>
     <div class="row">
       <div id="board">
@@ -38,32 +61,12 @@
         </table>
       </div><!-- /.board -->
       <div class="col-sm-2 col-xs-12 col-sm-push-2">
-        <button class="btn btn-primary btn-lg js-check">Check Me</button>
-        <button class="btn btn-warning btn-lg pull-right js-reset">Reset</button>
-        <a href="{% url 'play' %}" class="btn btn-success btn-new-game btn-lg pull-right">New Game</a>
+        <div class="side-panel">
+          <button class="btn btn-primary btn-lg js-check">Check Me</button>
+          <button class="btn btn-warning btn-lg js-reset">Reset</button>
+          <a href="{% url 'play' %}" class="btn btn-success btn-new-game btn-lg">New Game</a>
+        </div>
       </div>
-    </div><!-- /.row -->
-    <div class="row">
-      <div class="col-md-8 col-xs-12 col-md-push-2 alerts">
-        <div class="alert alert-blank js-alert-blank" role="alert"></div>
-
-        <div class="alert alert-warning alert-dismissible js-alert-warning" role="alert">
-          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-          <strong>So far so good!</strong> But haven't finished the puzzle yet!
-        </div>
-        <div class="alert alert-danger alert-dismissible js-alert-danger" role="alert">
-          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-          <strong>Sorry!</strong> The puzzle is incorrect!
-        </div>
-        <div class="alert alert-danger alert-dismissible js-alert-error" role="alert">
-          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-          <strong>Oops!</strong> Looks like there was a problem checking your puzzle. Please try again!
-        </div>
-        <div class="alert alert-success alert-dismissible js-alert-success" role="alert">
-          <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-          <strong>Success!</strong> You completed finished the puzzle yet!
-        </div>
-      </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container -->
 {% endblock %}
