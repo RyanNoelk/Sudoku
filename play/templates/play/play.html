@@ -5,33 +5,15 @@
   <link rel="stylesheet" href="{% static 'play/css/play.css' %}">
 {% endblock %}
 
+{% block header %}
+  {% include 'base/header.html' %}
+  {% include 'play/play_header.html' %}
+{% endblock %}
+
 {% block content %}
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-sm-10 col-xs-12 col-md-push-2 col-sm-push-1">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="alert alert-success alert-blank js-alert-blank" role="alert">
-              <strong>Good Luck!</strong> But haven't finished the puzzle yet!
-            </div>
-            <div class="alert alert-warning alert-dimdissible js-alert-warning" role="alert">
-              <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-              <strong>So far so good!</strong> But you haven't finished the puzzle yet!
-            </div>
-            <div class="alert alert-danger alert-dimdissible js-alert-danger" role="alert">
-              <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-              <strong>Sorry!</strong> The puzzle is incorrect!
-            </div>
-            <div class="alert alert-danger alert-dimdissible js-alert-error" role="alert">
-              <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-              <strong>Oops!</strong> Looks like there was a problem checking your puzzle. Please try again!
-            </div>
-            <div class="alert alert-success alert-dimdissible js-alert-success" role="alert">
-              <button type="button" class="close js-close-alert"><span aria-hidden="true">&times;</span></button>
-              <strong>Success!</strong> You completed finished the puzzle yet!
-            </div>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
         <div class="row">
           <div class="timer col-xs-12">
             <div class="play-button btn-warning pull-right js-play-button">

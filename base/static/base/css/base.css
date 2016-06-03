@@ -2,8 +2,11 @@ html {
   position: relative;
   min-height: 100%; }
   html body {
-    padding-top: 50px;
     margin-bottom: 40px; }
+
+.navbar {
+  border-radius: 0;
+  margin-bottom: 0; }
 
 .content {
   margin-top: 10px; }
