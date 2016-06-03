@@ -55,17 +55,33 @@
 }
 
 .timer {
-  .play {
-    width: 0;
-    height: 0;
-    border-top: 8px solid transparent;
-    border-left: 12px solid #000;
-    border-bottom: 8px solid transparent;
+  margin-bottom: 2px;
+  .clock {
+    font-size: 16px;
+    margin-top: 3px;
+    p {
+      display: inline-block;
+      margin-bottom:0;
+    }
   }
-  .pause {
-    width: 12px;
-    height: 16px;
-    border-right: 4px solid #000;
-    border-left: 4px solid #000;
+  .play-button {
+    border-radius: 5px;
+    margin-left: 10px;
+    border: 1px solid #000;
+    .play {
+      margin: 4px 10px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-left: 12px solid #000;
+      border-bottom: 8px solid transparent;
+    }
+    .pause {
+      margin: 4px 10px;
+      width: 12px;
+      height: 16px;
+      border-right: 4px solid #000;
+      border-left: 4px solid #000;
+    }
   }
 }

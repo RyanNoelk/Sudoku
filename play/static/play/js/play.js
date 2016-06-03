@@ -3,7 +3,7 @@ var SU = SU || {};
 $(document).ready(function() {
   // Initialize the module when the page loads
   SU.Play.init();
-  $('.js-timer').timer();
+  $('.js-clock').timer();
   var icon = $('.js-timer-control');
   icon.click(function() {
      icon.toggleClass('pause');
