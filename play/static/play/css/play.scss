@@ -16,14 +16,12 @@
   }
 }
 
-#board {
-  margin: 0;
   .sudoku_board {
     border: 3px solid $black;
+    margin: 0;
     margin-bottom: 10px;
     .square {
       font-size: 18px;
-      width: 50px;
       height: 50px;
       border-right: 1px solid $black;
       border-bottom: 1px solid $black;
@@ -52,7 +50,6 @@
       }
     }
   }
-}
 
 .timer {
   margin-bottom: 2px;

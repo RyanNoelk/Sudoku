@@ -3,13 +3,7 @@ var SU = SU || {};
 $(document).ready(function() {
   // Initialize the module when the page loads
   SU.Play.init();
-  $('.js-clock').timer();
-  var icon = $('.js-timer-control');
-  icon.click(function() {
-     icon.toggleClass('pause');
-     icon.toggleClass('play');
-     return false;
-  });
+  SU.Timer.init();
 });
 
 SU.Play = function () {
@@ -90,6 +84,34 @@ SU.Play = function () {
         clearAlerts();
         $(".js-alert-blank").show();
       });
+    }
+  };
+}();
+
+
+SU.Timer = function () {
+  var toggleTimer = function (clock) {
+    var icon = $('.js-timer-control');
+    var button = $('.play-button');
+    button.on('click', function() {
+      if ($('.js-timer-control').hasClass('pause')) {
+        clock.timer('pause');
+      }
+      else {
+        clock.timer('resume');
+      }
+      icon.toggleClass('pause');
+      icon.toggleClass('play');
+      button.toggleClass('btn-success');
+      button.toggleClass('btn-warning');
+    });
+  };
+
+  return {
+    init: function () {
+      var clock = $('.js-clock');
+      clock.timer();
+      toggleTimer(clock);
     }
   };
 }();
