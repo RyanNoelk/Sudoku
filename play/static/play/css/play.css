@@ -4,9 +4,10 @@
 .alert-blank {
   display: block; }
 
-.side-panel .btn {
-  width: 100%;
-  margin-bottom: 10px; }
+.option-panel {
+  margin-bottom: 20px; }
+  .option-panel .btn {
+    width: 100%; }
 
 .sudoku_board {
   border: 3px solid #000000;
@@ -61,5 +62,11 @@
       height: 16px;
       border-right: 4px solid #000;
       border-left: 4px solid #000; }
+
+@media (max-width: 767px) {
+  .option-panel {
+    margin-top: 20px; }
+    .option-panel .btn {
+      margin-bottom: 10px; } }
 
 /*# sourceMappingURL=play.css.map */
