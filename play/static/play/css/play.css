@@ -1,13 +1,14 @@
-.alert {
-  display: none; }
-
-.alert-blank {
-  display: block; }
-
-.option-panel {
-  margin-bottom: 20px; }
-  .option-panel .btn {
-    width: 100%; }
+.play-navbar {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 40px; }
+  .play-navbar .message {
+    margin-top: 10px;
+    display: none;
+    text-align: center;
+    font-size: 16px; }
+  .play-navbar .message-blank {
+    display: block; }
 
 .sudoku_board {
   border: 3px solid #000000;
@@ -63,10 +64,18 @@
       border-right: 4px solid #000;
       border-left: 4px solid #000; }
 
+.option-panel {
+  margin-bottom: 20px; }
+  .option-panel .btn {
+    width: 100%; }
+
 @media (max-width: 767px) {
   .option-panel {
     margin-top: 20px; }
     .option-panel .btn {
-      margin-bottom: 10px; } }
+      margin-bottom: 10px; }
+
+  .play-navbar {
+    margin-bottom: 0; } }
 
 /*# sourceMappingURL=play.css.map */

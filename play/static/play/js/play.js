@@ -18,19 +18,28 @@ SU.Play = function () {
       dataType : "json"
     })
     .success(function( json ) {
+      var bg = $(".js-bg");
       $(".js-alert-blank").hide();
       clearAlerts();
       if (json.result == 'ok') {
         $(".js-alert-warning").show();
+        bg.toggleClass('bg-primary');
+        bg.toggleClass('bg-warning');
       }
       else if (json.result == 'problem') {
         $(".js-alert-danger").show();
+        bg.toggleClass('bg-primary');
+        bg.toggleClass('bg-danger');
       }
       else if (json.result == 'complete') {
         $(".js-alert-success").show();
+        bg.toggleClass('bg-primary');
+        bg.toggleClass('bg-success');
       }
       else {
         $(".js-alert-error").show();
+        bg.toggleClass('bg-primary');
+        bg.toggleClass('bg-danger');
       }
     })
     .fail(function( xhr, status, errorThrown ) {

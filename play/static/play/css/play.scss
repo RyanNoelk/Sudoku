@@ -1,17 +1,18 @@
 //TODO: I should use compass...
 @import '../../../../base/static/base/css/styleguide';
 
-.alert {
-  display: none;
-}
-.alert-blank {
-  display: block;
-}
-
-.option-panel {
-  margin-bottom: 20px;
-  .btn {
-    width: 100%;
+.play-navbar {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 40px;
+  .message {
+    margin-top: 10px;
+    display: none;
+    text-align: center;
+    font-size: 16px;
+  }
+  .message-blank {
+    display: block;
   }
 }
 
@@ -82,11 +83,22 @@
   }
 }
 
+.option-panel {
+  margin-bottom: 20px;
+  .btn {
+    width: 100%;
+  }
+}
+
+
 @media (max-width: 767px) {
   .option-panel {
     margin-top: 20px;
     .btn {
       margin-bottom: 10px;
     }
+  }
+  .play-navbar {
+    margin-bottom: 0;
   }
 }
