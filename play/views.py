@@ -19,19 +19,18 @@ class PlayView(TemplateView):
         super(PlayView, self).__init__(**kwargs)
 
     def get(self, request, *args, **kwargs):
-        puzzle_id = self.kwargs.get('puzzle_id', None)
-        if puzzle_id is None:
-            # Get random Puzzle id from the DB
-            last = Puzzle.objects.count() - 1
-            puzzle_id = random.randint(1, last)
-            return redirect('play', puzzle_id=str(puzzle_id))
-        else:
-            context = self.get_context_data(**kwargs)
-            return self.render_to_response(context)
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):
         """Get context data for new puzzles."""
         puzzle_id = self.kwargs.get('puzzle_id', None)
+
+        if puzzle_id is None:
+            # Get random Puzzle id from the DB
+            last = Puzzle.objects.count() - 1
+            puzzle_id = random.randint(0, last)
+
         db_puzzle = Puzzle.objects.all()[int(puzzle_id)]
 
         # Load blank puzzle with replace it with the values of the loaded puzzle
@@ -46,7 +45,8 @@ class PlayView(TemplateView):
             puzzle[value.y_cord][value.x_cord] = value.value
 
         context = {
-          'puzzle': puzzle,
+            'puzzle': puzzle,
+            'puzzle_id': puzzle_id
         }
 
         return context
