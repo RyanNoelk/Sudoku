@@ -1,9 +1,11 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from django.views.generic.base import TemplateView
+from django.shortcuts import redirect
+
 import json
 import random
+
 from common.checker import Checker
-from django.shortcuts import redirect
 
 from play.models import Puzzle, PuzzleValue
 
@@ -31,7 +33,10 @@ class PlayView(TemplateView):
             last = Puzzle.objects.count() - 1
             puzzle_id = random.randint(0, last)
 
-        db_puzzle = Puzzle.objects.all()[int(puzzle_id)]
+        try:
+            db_puzzle = Puzzle.objects.all()[int(puzzle_id)]
+        except IndexError:
+            raise Http404("Sorry, that puzzle doesn't exist.")
 
         # Load blank puzzle with replace it with the values of the loaded puzzle
         values = PuzzleValue.objects.filter(puzzle__id=db_puzzle.id)
