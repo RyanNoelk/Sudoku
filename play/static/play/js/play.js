@@ -83,7 +83,10 @@ SU.Play = function () {
         ajax('check', displayCheckMessage);
       });
       $('.js-reset').on('click', function () {
-        location.reload();
+        $( "input" ).each(function() {
+          $( this ).val('');
+        });
+        SU.Timer.resetTimer();
       });
     }
   };
@@ -91,6 +94,9 @@ SU.Play = function () {
 
 
 SU.Timer = function () {
+
+  var clock = $('.js-clock');
+
   var toggleTimer = function (clock) {
     var icon = $('.js-timer-control');
     var button = $('.play-button');
@@ -108,11 +114,15 @@ SU.Timer = function () {
     });
   };
 
+  var resetTimer = function () {
+    clock.timer('remove').timer();
+  };
+
   return {
     init: function () {
-      var clock = $('.js-clock');
       clock.timer();
       toggleTimer(clock);
-    }
+    },
+    resetTimer: resetTimer
   };
 }();
