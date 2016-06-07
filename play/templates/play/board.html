@@ -1,0 +1,17 @@
+<table class="sudoku_board">
+  {% for row_num in puzzle %}
+    <tr class="sudoku_row">
+      {% for col_num in row_num %}
+        <td class="square
+                   {% if forloop.counter  == 3 or forloop.counter == 6 %}thick_boarder_right{% endif %}
+                   {% if forloop.parentloop.counter == 3 or forloop.parentloop.counter == 6 %}thick_boarder_bottom{% endif %}">
+          {% if col_num != 0 %}
+            <div class="js-cell">{{ col_num }}</div>
+          {% else %}
+            <input type="number" class="js-cell">
+          {% endif %}
+        </td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
+</table>

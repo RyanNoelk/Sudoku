@@ -7,7 +7,7 @@ $(document).ready(function() {
 });
 
 SU.Play = function () {
-  var ajax = function (action) {
+  var ajax = function (action, callback) {
     $.get({
       url: "/api/",
       data: {
@@ -15,31 +15,33 @@ SU.Play = function () {
         puzzle: getPuzzle()
       },
       type: "GET",
-      dataType : "json"
-    })
-    .success(function( json ) {
-      var bg = $(".js-bg");
-      clearMessage(bg);
-      if (json.result == 'ok') {
-        $(".js-message-warning").show();
-        bg.addClass('bg-warning');
-      }
-      else if (json.result == 'problem') {
-        $(".js-message-danger").show();
-        bg.addClass('bg-danger');
-      }
-      else if (json.result == 'complete') {
-        $(".js-message-success").show();
-        bg.addClass('bg-success');
-      }
-      else {
-        $(".js-message-error").show();
-        bg.addClass('bg-danger');
-      }
+      dataType : "json",
+      success : callback
     })
     .fail(function( xhr, status, errorThrown ) {
       $(".js-message-error").show();
     })
+  };
+
+  var displayCheckMessage = function (json) {
+    var bg = $(".js-bg");
+    clearMessage(bg);
+    if (json.result == 'ok') {
+      $(".js-message-warning").show();
+      bg.addClass('bg-warning');
+    }
+    else if (json.result == 'problem') {
+      $(".js-message-danger").show();
+      bg.addClass('bg-danger');
+    }
+    else if (json.result == 'complete') {
+      $(".js-message-success").show();
+      bg.addClass('bg-success');
+    }
+    else {
+      $(".js-message-error").show();
+      bg.addClass('bg-danger');
+    }
   };
 
   var getPuzzle = function () {
@@ -78,7 +80,7 @@ SU.Play = function () {
   return {
     init: function () {
       $('.js-check').on('click', function () {
-        ajax('check');
+        ajax('check', displayCheckMessage);
       });
       $('.js-reset').on('click', function () {
         location.reload();
