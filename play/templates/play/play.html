@@ -37,7 +37,7 @@
             <button class="btn btn-warning btn-lg js-reset">Reset</button>
           </div>
           <div class="col-sm-3 col-xs-12 col-sm-push-3">
-            <a href="{% url 'play' %}" class="btn btn-success btn-new-game btn-lg">New Game</a>
+            <button class="btn btn-success btn-new-game btn-lg js-new">New Game</button>
           </div>
         </div><!-- /.row -->
       </div><!-- /.col -->
@@ -47,6 +47,7 @@
 
 {% block js %}
   <script src="{% static 'play/js/timer.min.js' %}"></script>
+  <script src="{% static 'play/js/clock.js' %}"></script>
   <script src="{% static 'play/js/play.js' %}"></script>
 {% endblock %}
 

@@ -19,7 +19,16 @@ SU.Play = function () {
       success : callback
     })
     .fail(function( xhr, status, errorThrown ) {
+      var bg = $(".js-bg");
+      clearMessage(bg);
       $(".js-message-error").show();
+      bg.addClass('bg-danger');
+    })
+    .always(function() {
+      $("#board").addClass('loading');
+    })
+    .done(function() {
+      $("#board").removeClass('loading');
     })
   };
 
@@ -44,6 +53,10 @@ SU.Play = function () {
     }
   };
 
+  var refreshBoard = function(json) {
+    $("#board").html(json.board_html);
+  };
+
   var getPuzzle = function () {
     var puzzle = [], row = [];
     $('.js-cell').each(function(index) {
@@ -66,15 +79,15 @@ SU.Play = function () {
   };
 
   var clearMessage = function (bg) {
-      $(".js-message-default").hide();
-      $(".js-message-warning").hide();
-      $(".js-message-danger").hide();
-      $(".js-message-success").hide();
-      $(".js-message-error").hide();
-      bg.removeClass("bg-warning");
-      bg.removeClass("bg-success");
-      bg.removeClass("bg-danger");
-      bg.removeClass("bg-primary");
+    $(".js-message-default").hide();
+    $(".js-message-warning").hide();
+    $(".js-message-danger").hide();
+    $(".js-message-success").hide();
+    $(".js-message-error").hide();
+    bg.removeClass("bg-warning");
+    bg.removeClass("bg-success");
+    bg.removeClass("bg-danger");
+    bg.removeClass("bg-primary");
   };
 
   return {
@@ -88,41 +101,10 @@ SU.Play = function () {
         });
         SU.Timer.resetTimer();
       });
+      $('.js-new').on('click', function () {
+        ajax('new', refreshBoard);
+        SU.Timer.resetTimer();
+      });
     }
-  };
-}();
-
-
-SU.Timer = function () {
-
-  var clock = $('.js-clock');
-
-  var toggleTimer = function (clock) {
-    var icon = $('.js-timer-control');
-    var button = $('.play-button');
-    button.on('click', function() {
-      if ($('.js-timer-control').hasClass('pause')) {
-        clock.timer('pause');
-      }
-      else {
-        clock.timer('resume');
-      }
-      icon.toggleClass('pause');
-      icon.toggleClass('play');
-      button.toggleClass('btn-success');
-      button.toggleClass('btn-warning');
-    });
-  };
-
-  var resetTimer = function () {
-    clock.timer('remove').timer();
-  };
-
-  return {
-    init: function () {
-      clock.timer();
-      toggleTimer(clock);
-    },
-    resetTimer: resetTimer
   };
 }();

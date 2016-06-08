@@ -1,6 +1,7 @@
 from django.http import JsonResponse, Http404
 from django.views.generic.base import TemplateView
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 
 import json
 import random
@@ -30,15 +31,24 @@ class PlayView(TemplateView):
 
         if puzzle_id is None:
             # Get random Puzzle id from the DB
-            last = Puzzle.objects.count() - 1
-            puzzle_id = random.randint(0, last)
+            puzzle_id = self._get_random_puzzle_id()
 
+        context = self._build_puzzle(puzzle_id)
+
+        return context
+
+    def _get_random_puzzle_id(self):
+        # Get random Puzzle id from the DB
+        last = Puzzle.objects.count() - 1
+        return random.randint(0, last)
+
+    def _build_puzzle(self, puzzle_id):
         try:
             db_puzzle = Puzzle.objects.all()[int(puzzle_id)]
         except IndexError:
             raise Http404("Sorry, that puzzle doesn't exist.")
 
-        # Load blank puzzle with replace it with the values of the loaded puzzle
+        # Load blank puzzle then replace it with the values of the loaded puzzle
         values = PuzzleValue.objects.filter(puzzle__id=db_puzzle.id)
         puzzle = []
         for y in range(db_puzzle.height):
@@ -49,12 +59,11 @@ class PlayView(TemplateView):
         for value in values:
             puzzle[value.y_cord][value.x_cord] = value.value
 
-        context = {
+        return {
             'puzzle': puzzle,
-            'puzzle_id': puzzle_id
+            'puzzle_id': puzzle_id,
         }
 
-        return context
 
 
 #@cbv_decorator(require_http_methods(['GET']))
@@ -71,7 +80,26 @@ class APIView(PlayView):
 
     def get_context_data(self, request, **kwargs):
         """Get context function for the api."""
-        puzzle = json.loads(request.GET.get('puzzle', None))
+        action = request.GET.get('action', None)
+
+        board_html = ''
+        checked = ''
+
+        if action == 'new':
+            puzzle_data = self._build_puzzle(self._get_random_puzzle_id())
+            board_html = render_to_string('play/board.html', puzzle_data)
+        else:
+            puzzle = json.loads(request.GET.get('puzzle', None))
+            checked = self._check_puzzle(puzzle)
+
+        context = {
+            'result': checked,
+            'board_html': board_html,
+        }
+
+        return context
+
+    def _check_puzzle(self, puzzle):
         if puzzle:
             checked = Checker(puzzle).validate()
             if not checked:
@@ -85,9 +113,5 @@ class APIView(PlayView):
         else:
             checked = 'error'
 
-        context = {
-            'result': checked,
-        }
-
-        return context
+        return checked
 
