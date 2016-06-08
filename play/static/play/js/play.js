@@ -5,6 +5,12 @@ $(document).ready(function() {
   SU.Play.init();
   SU.Timer.init();
 });
+$( document ).ajaxStart(function() {
+  $(".js-sudoku_board").addClass('loading');
+});
+$( document ).ajaxStop(function() {
+  $(".js-sudoku_board").removeClass('loading');
+});
 
 SU.Play = function () {
   var ajax = function (action, callback) {
@@ -23,12 +29,6 @@ SU.Play = function () {
       clearMessage(bg);
       $(".js-message-error").show();
       bg.addClass('bg-danger');
-    })
-    .always(function() {
-      $("#board").addClass('loading');
-    })
-    .done(function() {
-      $("#board").removeClass('loading');
     })
   };
 

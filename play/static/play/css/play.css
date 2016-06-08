@@ -49,25 +49,30 @@
   .timer .play-button {
     border-radius: 5px;
     margin-left: 10px;
-    border: 1px solid #000; }
+    border: 1px solid #000000; }
     .timer .play-button .play {
       margin: 4px 10px;
       width: 0;
       height: 0;
       border-top: 8px solid transparent;
-      border-left: 12px solid #000;
+      border-left: 12px solid #000000;
       border-bottom: 8px solid transparent; }
     .timer .play-button .pause {
       margin: 4px 10px;
       width: 12px;
       height: 16px;
-      border-right: 4px solid #000;
-      border-left: 4px solid #000; }
+      border-right: 4px solid #000000;
+      border-left: 4px solid #000000; }
 
 .option-panel {
   margin-bottom: 20px; }
   .option-panel .btn {
     width: 100%; }
+
+.loading {
+  background-color: #DDDDDD; }
+  .loading input {
+    background-color: #DDDDDD; }
 
 @media (max-width: 767px) {
   .option-panel {
