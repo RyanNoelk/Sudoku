@@ -19,9 +19,9 @@
     height: 50px;
     border-right: 1px solid #333333;
     border-bottom: 1px solid #333333; }
-    .sudoku_board .square.thick_boarder_bottom {
+    .sudoku_board .square.thick_border_bottom {
       border-bottom: 3px solid #333333; }
-    .sudoku_board .square.thick_boarder_right {
+    .sudoku_board .square.thick_border_right {
       border-right: 3px solid #333333; }
     .sudoku_board .square div {
       text-align: center;

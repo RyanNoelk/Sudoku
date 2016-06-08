@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 
 import json
 import random
+from math import sqrt
 
 from common.checker import Checker
 
@@ -59,14 +60,20 @@ class PlayView(TemplateView):
         for value in values:
             puzzle[value.y_cord][value.x_cord] = value.value
 
+        try:
+            width_border = [x*int(sqrt(len(puzzle[0]))) for x in range(int(sqrt(len(puzzle[0]))))]
+            height_border = [x*int(sqrt(len(puzzle))) for x in range(int(sqrt(len(puzzle))))]
+        except IndexError:
+            raise Http404("Sorry, the puzzle u request isn't valid.")
+
         return {
             'puzzle': puzzle,
+            'width_border': width_border,
+            'height_border': height_border,
             'puzzle_id': puzzle_id,
         }
 
 
-
-#@cbv_decorator(require_http_methods(['GET']))
 class APIView(PlayView):
     """Django class-based view for the ajax api."""
 

@@ -2,9 +2,7 @@
   {% for row_num in puzzle %}
     <tr class="sudoku_row">
       {% for col_num in row_num %}
-        <td class="square
-                   {% if forloop.counter  == 3 or forloop.counter == 6 %}thick_boarder_right{% endif %}
-                   {% if forloop.parentloop.counter == 3 or forloop.parentloop.counter == 6 %}thick_boarder_bottom{% endif %}">
+        <td class="square {% if forloop.counter in height_border %}thick_border_right{% endif %} {% if forloop.parentloop.counter in height_border %}thick_border_bottom{% endif %}">
           {% if col_num != 0 %}
             <div class="js-cell">{{ col_num }}</div>
           {% else %}
