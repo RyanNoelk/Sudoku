@@ -9,6 +9,7 @@ SU.Timer = function () {
   var clock = $('.js-clock');
 
   var toggleTimer = function (clock) {
+    // Initialize the play/pause button of the timer.
     var icon = $('.js-timer-control');
     var button = $('.play-button');
     button.on('click', function() {
@@ -26,6 +27,7 @@ SU.Timer = function () {
   };
 
   var resetTimer = function () {
+    // To reset the timer, remove it then add it back.
     clock.timer('remove').timer();
   };
 
