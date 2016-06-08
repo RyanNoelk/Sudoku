@@ -14,7 +14,7 @@ from play.models import Puzzle, PuzzleValue
 
 
 class PlayView(TemplateView):
-    """Django class-based view for the new cities browse page."""
+    """Django class-based view for playing Sudoku."""
 
     template_name = 'play/play.html'
     puzzle_id = None
@@ -24,27 +24,35 @@ class PlayView(TemplateView):
         super(PlayView, self).__init__(**kwargs)
 
     def get(self, request, *args, **kwargs):
+        """Render `PlayView` instance."""
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):
         """Get context data for new puzzles."""
-        puzzle_id = self.kwargs.get('puzzle_id', None)
 
+        # If we have an ID from the get request, use that.
+        # Otherwise get a random puzzle.
+        puzzle_id = self.kwargs.get('puzzle_id', None)
         if puzzle_id is None:
-            # Get random Puzzle id from the DB
+            # Get a random Puzzle id from the DB
             puzzle_id = self._get_random_puzzle_id()
 
-        context = self._build_puzzle(puzzle_id)
-
-        return context
+        # return the puzzle once we get and format its context from the DB.
+        return self._build_puzzle(puzzle_id)
 
     def _get_random_puzzle_id(self):
-        # Get random Puzzle id from the DB
+        """Get a random Puzzle id from the DB"""
         last = Puzzle.objects.count() - 1
         return random.randint(0, last)
 
     def _build_puzzle(self, puzzle_id):
+        """
+        Fetch a puzzle from the DB based on ID.
+        Then format the output so the template can understand it.
+        """
+
+        # Try and get the puzzle ID, 404 otherwise.
         try:
             db_puzzle = Puzzle.objects.all()[int(puzzle_id)]
         except IndexError:
@@ -61,6 +69,7 @@ class PlayView(TemplateView):
         for value in values:
             puzzle[value.y_cord][value.x_cord] = value.value
 
+        # Try to get locations of where to draw thick borders, 404 otherwise.
         try:
             width_border = [x*int(sqrt(len(puzzle[0]))) for x in range(int(sqrt(len(puzzle[0]))))]
             height_border = [x*int(sqrt(len(puzzle))) for x in range(int(sqrt(len(puzzle))))]
@@ -69,9 +78,9 @@ class PlayView(TemplateView):
 
         return {
             'puzzle': puzzle,
+            'puzzle_id': puzzle_id,
             'width_border': width_border,
             'height_border': height_border,
-            'puzzle_id': puzzle_id,
         }
 
 
@@ -83,6 +92,7 @@ class APIView(PlayView):
         super(APIView, self).__init__(**kwargs)
 
     def get(self, request, *args, **kwargs):
+        """Return `APIView` json."""
         context = self.get_context_data(request, **kwargs)
         return JsonResponse(context)
 
@@ -93,6 +103,8 @@ class APIView(PlayView):
         board_html = ''
         checked = ''
 
+        # if the action is new, return a new Sudoku puzzle.
+        # Otherwise, check the current puzzle and return the result of the check.
         if action == 'new':
             puzzle_data = self._build_puzzle(self._get_random_puzzle_id())
             board_html = render_to_string('play/board.html', puzzle_data)
@@ -108,17 +120,25 @@ class APIView(PlayView):
         return context
 
     def _check_puzzle(self, puzzle):
+        """Check the puzzle and return its status"""
         if puzzle:
+            # First, check if the puzzle is complete and correct.
             checked = Checker(puzzle).validate()
             if not checked:
+                # If the puzzle is not complete or not correct,
+                # Check to see if it's correct while being incomplete.
                 checked = Checker(puzzle, True).validate()
                 if checked:
+                    # return problem, if the puzzle is not complete but correct.
                     checked = 'ok'
                 else:
+                    # return problem, if the puzzle is not correct.
                     checked = 'problem'
             else:
+                # return complete, if the puzzle is complete and correct.
                 checked = 'complete'
         else:
+            # return error, if the function got None for the puzzle
             checked = 'error'
 
         return checked
