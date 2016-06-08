@@ -11,18 +11,18 @@
     display: block; }
 
 .sudoku_board {
-  border: 3px solid #000000;
+  border: 3px solid #333333;
   margin: 0;
   margin-bottom: 10px; }
   .sudoku_board .square {
     font-size: 18px;
     height: 50px;
-    border-right: 1px solid #000000;
-    border-bottom: 1px solid #000000; }
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333; }
     .sudoku_board .square.thick_boarder_bottom {
-      border-bottom: 3px solid #000000; }
+      border-bottom: 3px solid #333333; }
     .sudoku_board .square.thick_boarder_right {
-      border-right: 3px solid #000000; }
+      border-right: 3px solid #333333; }
     .sudoku_board .square div {
       text-align: center;
       font-weight: bold; }
@@ -34,9 +34,7 @@
       height: 99%;
       text-align: center;
       font-size: 20px;
-      color: green; }
-      .sudoku_board .square input:focus {
-        color: blue; }
+      color: #337ab7; }
 
 .timer {
   margin-bottom: 2px; }
@@ -49,20 +47,20 @@
   .timer .play-button {
     border-radius: 5px;
     margin-left: 10px;
-    border: 1px solid #000000; }
+    border: 1px solid #333333; }
     .timer .play-button .play {
       margin: 4px 10px;
       width: 0;
       height: 0;
       border-top: 8px solid transparent;
-      border-left: 12px solid #000000;
+      border-left: 12px solid #333333;
       border-bottom: 8px solid transparent; }
     .timer .play-button .pause {
       margin: 4px 10px;
       width: 12px;
       height: 16px;
-      border-right: 4px solid #000000;
-      border-left: 4px solid #000000; }
+      border-right: 4px solid #333333;
+      border-left: 4px solid #333333; }
 
 .option-panel {
   margin-bottom: 20px; }
@@ -70,9 +68,9 @@
     width: 100%; }
 
 .loading {
-  background-color: #DDDDDD; }
+  background-color: #EEEEEE; }
   .loading input {
-    background-color: #DDDDDD; }
+    background-color: #EEEEEE; }
 
 @media (max-width: 767px) {
   .option-panel {
