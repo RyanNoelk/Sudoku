@@ -1,7 +1,7 @@
 var SU = SU || {};
 
 $(document).ready(function() {
-  // Initialize the module when the page loads
+  // Initialize the module when the page loads.
   SU.Timer.init();
 });
 
