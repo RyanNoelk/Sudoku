@@ -1,17 +1,15 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from django.http import JsonResponse, Http404
-from django.views.generic.base import TemplateView
-from django.shortcuts import redirect
-from django.template.loader import render_to_string
-
 import json
 import random
 from math import sqrt
 
-from common.checker import Checker
+from django.http import JsonResponse, Http404
+from django.views.generic.base import TemplateView
+from django.template.loader import render_to_string
 
+from common.checker import Checker
 from play.models import Puzzle, PuzzleValue
 
 
