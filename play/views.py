@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
 from django.http import JsonResponse, Http404
 from django.views.generic.base import TemplateView
 from django.shortcuts import redirect
