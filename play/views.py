@@ -43,10 +43,11 @@ class PlayView(TemplateView):
 
     def _get_random_puzzle(self, difficulty='Easy'):
         """Get a random Puzzle id from the DB"""
-        last = Puzzle.objects.filter(puzzle__difficulty=difficulty).count() - 1
+        available_puzzles = Puzzle.objects.get_total_values()
+        last = available_puzzles.count() - 1
         puzzle_id = random.randint(0, last)
         try:
-            return Puzzle.objects.filter(get_total_values=difficulty)[int(puzzle_id)]
+            return available_puzzles[int(puzzle_id)]
         except IndexError:
             raise Http404("Sorry, that puzzle doesn't exist.")
 
@@ -76,7 +77,7 @@ class PlayView(TemplateView):
 
         return {
             'puzzle': puzzle,
-            'puzzle_id': puzzle_id,
+            'puzzle_id': db_puzzle.pk,
             'width_border': width_border,
             'height_border': height_border,
         }
