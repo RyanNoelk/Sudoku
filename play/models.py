@@ -12,13 +12,13 @@ class Puzzle(models.Model):
 
     def get_total_values(self, difficulty):
         if 'Easy' == difficulty:
-            return self.filter(total_values=<40)
+            return self.filter(total_values__gte=40)
         if 'Medium' == difficulty:
-            return self.filter(total_values=<30)
+            return self.filter(total_values__gte=30).filter(total_values__lte=40)
         if 'Hard' == difficulty:
-            return self.filter(total_values=<20)
+            return self.filter(total_values__gte=20).filter(total_values__lte=30)
         if 'Evil' == difficulty:
-            return self.filter(total_values=<10)
+            return self.filter(total_values__lte=20)
         else:
             return self.all()
 
