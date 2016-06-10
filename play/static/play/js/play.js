@@ -17,7 +17,8 @@ SU.Play = function () {
       url: "/api/",
       data: {
         action: action,
-        puzzle: getPuzzle()
+        puzzle: getPuzzle(),
+        difficulty: $('.js-difficulty-text').html()
       },
       type: "GET",
       dataType : "json",
@@ -36,6 +37,16 @@ SU.Play = function () {
     SU.Message.displayMessage('new');
     $("#board").html(json.board_html);
     SU.Timer.resetTimer();
+  };
+
+  // Change the difficulty of the puzzle
+  var ChangeDifficulty = function(difficulty) {
+    // TODO: Check if the puzzle has been worked on
+    // If it has, ask the user if they want to abandoned there current game
+    
+    // Change the difficulty dropdown and refresh the board
+    $(".js-difficulty-text").html(difficulty);
+    ajax('new', refreshBoard);
   };
 
   // Get the current puzzle and return it as a json string (array of arrays)
@@ -67,6 +78,9 @@ SU.Play = function () {
       });
       $('.js-new').on('click', function () {
         ajax('new', refreshBoard);
+      });
+      $('.js-difficulty').on('click', function () {
+        ChangeDifficulty($(this).html());
       });
       $('.js-reset').on('click', function () {
         $( "input" ).each(function() {

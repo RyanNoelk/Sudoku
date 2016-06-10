@@ -36,27 +36,25 @@ class PlayView(TemplateView):
         puzzle_id = self.kwargs.get('puzzle_id', None)
         if puzzle_id is None:
             # Get a random Puzzle id from the DB
-            puzzle_id = self._get_random_puzzle_id()
+            puzzle_id = self._get_random_puzzle()
 
         # return the puzzle once we get and format its context from the DB.
         return self._build_puzzle(puzzle_id)
 
-    def _get_random_puzzle_id(self):
+    def _get_random_puzzle(self, difficulty='Easy'):
         """Get a random Puzzle id from the DB"""
-        last = Puzzle.objects.count() - 1
-        return random.randint(0, last)
+        last = Puzzle.objects.filter(puzzle__difficulty=difficulty).count() - 1
+        puzzle_id = random.randint(0, last)
+        try:
+            return Puzzle.objects.filter(get_total_values=difficulty)[int(puzzle_id)]
+        except IndexError:
+            raise Http404("Sorry, that puzzle doesn't exist.")
 
-    def _build_puzzle(self, puzzle_id):
+    def _build_puzzle(self, db_puzzle):
         """
         Fetch a puzzle from the DB based on ID.
         Then format the output so the template can understand it.
         """
-
-        # Try and get the puzzle ID, 404 otherwise.
-        try:
-            db_puzzle = Puzzle.objects.all()[int(puzzle_id)]
-        except IndexError:
-            raise Http404("Sorry, that puzzle doesn't exist.")
 
         # Load blank puzzle then replace it with the values of the loaded puzzle
         values = PuzzleValue.objects.filter(puzzle__id=db_puzzle.id)
@@ -106,7 +104,7 @@ class APIView(PlayView):
         # if the action is new, return a new Sudoku puzzle.
         # Otherwise, check the current puzzle and return the result of the check.
         if action == 'new':
-            puzzle_data = self._build_puzzle(self._get_random_puzzle_id())
+            puzzle_data = self._build_puzzle(self._get_random_puzzle())
             board_html = render_to_string('play/board.html', puzzle_data)
         else:
             puzzle = json.loads(request.GET.get('puzzle', None))

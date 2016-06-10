@@ -1,3 +1,20 @@
+.difficulty {
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 5px; }
+  .difficulty .dropdown {
+    display: inline-block; }
+    .difficulty .dropdown button {
+      background: inherit;
+      border: none;
+      overflow: hidden; }
+      .difficulty .dropdown button:active {
+        border: none; }
+    .difficulty .dropdown .dropdown-menu {
+      font-size: 16px; }
+    .difficulty .dropdown .difficulty-text {
+      display: inline-block; }
+
 .play-navbar {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
