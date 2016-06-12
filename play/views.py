@@ -41,9 +41,11 @@ class PlayView(TemplateView):
         # return the puzzle once we get and format its context from the DB.
         return self._build_puzzle(puzzle_id)
 
-    def _get_random_puzzle(self, difficulty='Easy'):
+    def _get_random_puzzle(self, difficulty=None):
         """Get a random Puzzle id from the DB"""
-        available_puzzles = Puzzle.objects.get_total_values()
+        available_puzzles = Puzzle.objects.get_total_values(difficulty)
+        if not available_puzzles:
+            available_puzzles = Puzzle.objects.all()
         last = available_puzzles.count() - 1
         puzzle_id = random.randint(0, last)
         try:
@@ -105,7 +107,8 @@ class APIView(PlayView):
         # if the action is new, return a new Sudoku puzzle.
         # Otherwise, check the current puzzle and return the result of the check.
         if action == 'new':
-            puzzle_data = self._build_puzzle(self._get_random_puzzle())
+            difficulty = request.GET.get('difficulty', None)
+            puzzle_data = self._build_puzzle(self._get_random_puzzle(difficulty))
             board_html = render_to_string('play/board.html', puzzle_data)
         else:
             puzzle = json.loads(request.GET.get('puzzle', None))
