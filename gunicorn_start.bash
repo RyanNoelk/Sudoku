@@ -2,7 +2,6 @@
 
 NAME="Sudoku"                                     # Name of the application
 DJANGODIR=/home/ryan/www/Sudoku                   # Django project directory
-SOCKFILE=/home/ryan/www/Sudoku/gunicorn.sock      # we will communicte using this unix socket
 USER=www-data                                     # the user to run as
 GROUP=www-data                                    # the group to run as
 NUM_WORKERS=9                                     # how many worker processes should Gunicorn spawn
@@ -22,5 +21,4 @@ exec gunicorn ${DJANGO_WSGI_MODULE}:application \
   --name $NAME \
   --workers $NUM_WORKERS \
   --user=$USER --group=$GROUP \
-  --bind=localhost:8000 \
-  --log-file=-
+  --bind=localhost:8000
