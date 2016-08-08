@@ -4,7 +4,7 @@ NAME="Sudoku"                                     # Name of the application
 DJANGODIR=/home/ryan/www/Sudoku                   # Django project directory
 USER=www-data                                     # the user to run as
 GROUP=www-data                                    # the group to run as
-NUM_WORKERS=9                                     # how many worker processes should Gunicorn spawn
+NUM_WORKERS=5                                     # how many worker processes should Gunicorn spawn
 DJANGO_SETTINGS_MODULE=base.settings              # which settings file should Django use
 DJANGO_WSGI_MODULE=base.wsgi                      # WSGI module name
 
