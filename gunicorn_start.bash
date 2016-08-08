@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NAME="Sudoku"                                     # Name of the application
-DJANGODIR=/home/ryan/www/Sudoku                   # Django project directory
+DJANGODIR=~/www/Sudoku                            # Django project directory
 USER=www-data                                     # the user to run as
 GROUP=www-data                                    # the group to run as
 NUM_WORKERS=9                                     # how many worker processes should Gunicorn spawn
@@ -12,9 +12,7 @@ echo "Starting $NAME as `whoami`"
 
 # Activate the virtual environment
 cd $DJANGODIR
-export WORKON_HOME=$HOME/.virtualenvs
-source ~/.local/bin/virtualenvwrapper.sh
-workon sudoku
+source ~/.virtualenvs/sudoku/bin/activeate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
