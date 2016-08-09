@@ -1,6 +1,29 @@
 //TODO: I should use compass...
 @import '../../../../base/static/base/css/styleguide';
 
+.difficulty {
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 5px;
+  .dropdown {
+    display: inline-block;
+    button {
+      background: inherit;
+      border: none;
+      overflow:hidden;
+      &:active {
+        border: none;
+      }
+    }
+    .dropdown-menu {
+      font-size: 16px;
+    }
+    .difficulty-text {
+      display: inline-block;
+    }
+  }
+}
+
 .play-navbar {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
